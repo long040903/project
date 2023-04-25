@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact-us</title>
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        />
+        
+        <link rel="stylesheet" href="contact-us.css" />
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="header">
+                
+                <div class="header__title">
+                    <h2>Contact us</h2>
+                </div>
+            </div><br>
+            <form
+                action=""
+                class="form"
+                method="post"
+            >
+                <div class="form__username">
+                    <div class="form__username--icon form__icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form__username--input form__input">
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Name"
+                            name="username"
+                        />
+                    </div>
+                </div>
+                <p id="errorUsername">
+                </p>
+
+                <div class="form__phone">
+                    <div class="form__phone--icon form__icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="form__phone--input form__input">
+                        <input
+                            type="text"
+                            id="phone"
+                            placeholder="phone"
+                            name="phone"
+                        />
+                    </div>
+                </div>
+                <p id="errorPhone">
+                </p>
+
+                <div class="form__email">
+                    <div class="form__email--icon form__icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form__email--input form__input">
+                        <input
+                            type="text"
+                            id="email"
+                            placeholder="email"
+                            name="email"
+                        />
+                    </div>
+                </div>
+                <p id="errorEmail">
+                </p>
+
+                <div class="form__comment">
+                    <!-- <div class="form__comment--icon form__icon">
+                        <i class="fas fa-home"></i>
+                    </div> -->
+                    <div class="form__comment--input form__input">
+                        <textarea name="comment" id="comment" cols="36" rows="6" placeholder="Comment" ></textarea>
+                    </div><br>
+                </div>
+                <p id="errorComment">
+                
+                </p><br>
+                <div class="form__submit" style="margin-top: 8%;">
+                    <button type="submit" name="register">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            <p id="errorregister">
+            
+            </p>
+        
+        </div>
+            </form>
+        
+
+        
+    </body>
+</html>
