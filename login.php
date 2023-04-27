@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
             $sql = "SELECT * FROM user WHERE username='$username' and password='$password_hash'";
             $res = $conn->query($sql);
             if (($res->num_rows) > 0 ) {
-              header("location:home-page.html");
+              header("location:home-page.php");
             } else {
                 $errors['failed']="Name or password invalid";
             }

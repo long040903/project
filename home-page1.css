@@ -185,7 +185,7 @@ section{
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: url(/images/images/dep-da-dep-dang-chi-voi-nuoc-ep-rau-can-tay-thumbnail.jpeg) no-repeat;
+    background: url(images/tra-sua10.jpeg) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -612,7 +612,6 @@ footer .container .title.about p{
     font-size: 1.6rem;
 }
 
-  
 
 
 
@@ -685,11 +684,29 @@ footer .container .title.about p{
     .home .content p{
         font-size: 1.5rem;
     }
-    
+    footer .container{
+        
+    flex-direction: column;
+    }
+    footer .container .title.about{
+        width: 100%;
+    }
+    footer .container .title{
+        width: 100%;
+    }
+   
+
 } 
 @media(max-width:450px){
     html{
         font-size: 50%;
+    } 
+    footer .container .title{
+        width: 100%;
+    }
+    footer .container .title.about p{
+        width: 250%;
+        margin-bottom: 10px;
     }
     
 }
