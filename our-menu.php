@@ -19,7 +19,7 @@
     </a>
 
     <nav class="navbar">
-        <a href="home-page.html">Home</a>
+        <a href="home-page.php">Home</a>
         <a href="#milktea">Milk tea</a>
         <a href="#coffee">Coffee</a>
         <a href="#tea">Tea</a>
