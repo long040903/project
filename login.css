@@ -19,7 +19,7 @@ body {
     justify-content: center;
     height: 100vh;
     font-family: "Quicksand";
-        background: url(/images/images/foody-mobile-45564654-jpg-313-636127521466786573.jpeg) no-repeat;
+        background: url(images/nuoc-ep6.jpg) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -28,7 +28,7 @@ input {
     border: none;
 }
 .container {
-    background: bisque;
+    background: white;
     width: 40rem;
     height: 40rem;
     padding: 1rem 2rem;

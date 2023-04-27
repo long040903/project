@@ -14,21 +14,22 @@ html {
     font-size: 62.5%;
 }
 body {
+    padding-top: 8%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     font-family: "Quicksand";
-    background: url(/images/dep-da-dep-dang-chi-voi-nuoc-ep-rau-can-tay-thumbnail.jpeg) no-repeat;
+    background: url(images/ca-phe1.jpeg) no-repeat;
     background-size: cover;
     background-position: center;
 }
+
 input {
     outline: none;
     border: none;
 }
 .container {
-    background: bisque;
+    background: white;
     width: 40rem;
     height: 55rem;
     padding: 1rem 2rem;
@@ -37,6 +38,8 @@ input {
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
+    position: relative;
+    z-index: 1;
 }
 #errorUsername , #errorPassword , #errorPhone , #errorEmail , #errorAddress , #errorregister{
     
@@ -70,7 +73,6 @@ input {
 }
 .form__icon {
     font-size: 2rem;
-    background: var(--main-color);
     width: 5rem;
     display: flex;
     align-items: center;
@@ -89,10 +91,12 @@ input {
     padding-left: 1rem;
     font-size: 1.7rem;
     color: #737171;
-    background: var(--main-color);
+    background: #ededed;
     transition: background-color 0.4s;
 }
-
+.form__input > input:hover{
+    background: var(--main-color);
+}
 .form__submit button {
     width: 100%;
     height: 100%;

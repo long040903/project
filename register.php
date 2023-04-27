@@ -71,131 +71,131 @@ if (isset($_POST['register'])) {
     <body>
         
         <div class="container">
-            <div class="header">
-                
-                <div class="header__title">
-                    <h2>Registration</h2>
-                </div>
-            </div><br>
-            <form
-                action=""
-                class="form"
-                method="post"
-            >
-                <div class="form__username">
-                    <div class="form__username--icon form__icon">
-                        <i class="fas fa-user"></i>
+                <div class="header">
+                    
+                    <div class="header__title">
+                        <h2>Registration</h2>
                     </div>
-                    <div class="form__username--input form__input">
-                        <input
-                            type="text"
-                            id="username"
-                            placeholder="Name"
-                            name="username"
-                        />
+                </div><br>
+                <form
+                    action=""
+                    class="form"
+                    method="post"
+                >
+                    <div class="form__username">
+                        <div class="form__username--icon form__icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="form__username--input form__input">
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Name"
+                                name="username"
+                            />
+                        </div>
                     </div>
-                </div>
-                <p id="errorUsername">
-                <?php if (!empty($errors['username'])) {
-              echo $errors['username'];
-      } ?>
-                </p>
-                <div class="form__password">
-                    <div class="form__password--icon form__icon">
-                        <i class="fas fa-lock"></i>
+                    <p id="errorUsername">
+                    <?php if (!empty($errors['username'])) {
+                echo $errors['username'];
+        } ?>
+                    </p>
+                    <div class="form__password">
+                        <div class="form__password--icon form__icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="form__password--input form__input">
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Password"
+                                name="password"
+                            />
+                        </div>
                     </div>
-                    <div class="form__password--input form__input">
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Password"
-                            name="password"
-                        />
+                    <p id="errorPassword">
+                    <?php if (!empty($errors['password'])) {
+                    echo $errors['password'];
+                } ?>
+                    </p>
+                    
+                    <div class="form__phone">
+                        <div class="form__phone--icon form__icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="form__phone--input form__input">
+                            <input
+                                type="text"
+                                id="phone"
+                                placeholder="phone"
+                                name="phone"
+                            />
+                        </div>
                     </div>
-                </div>
-                <p id="errorPassword">
-                <?php if (!empty($errors['password'])) {
-                  echo $errors['password'];
-            } ?>
-                </p>
-                
-                <div class="form__phone">
-                    <div class="form__phone--icon form__icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="form__phone--input form__input">
-                        <input
-                            type="text"
-                            id="phone"
-                            placeholder="phone"
-                            name="phone"
-                        />
-                    </div>
-                </div>
-                <p id="errorPhone">
-                <?php if (!empty($errors['phone'])) {
-                  echo $errors['phone'];
-            } ?>
-                </p>
+                    <p id="errorPhone">
+                    <?php if (!empty($errors['phone'])) {
+                    echo $errors['phone'];
+                } ?>
+                    </p>
 
-                <div class="form__email">
-                    <div class="form__email--icon form__icon">
-                        <i class="fas fa-envelope"></i>
+                    <div class="form__email">
+                        <div class="form__email--icon form__icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="form__email--input form__input">
+                            <input
+                                type="text"
+                                id="email"
+                                placeholder="email"
+                                name="email"
+                            />
+                        </div>
                     </div>
-                    <div class="form__email--input form__input">
-                        <input
-                            type="text"
-                            id="email"
-                            placeholder="email"
-                            name="email"
-                        />
-                    </div>
-                </div>
-                <p id="errorEmail">
-                <?php if (!empty($errors['email'])) {
-                  echo $errors['email'];
-            } ?>
-                </p>
+                    <p id="errorEmail">
+                    <?php if (!empty($errors['email'])) {
+                    echo $errors['email'];
+                } ?>
+                    </p>
 
-                <div class="form__address">
-                    <div class="form__address--icon form__icon">
-                        <i class="fas fa-home"></i>
+                    <div class="form__address">
+                        <div class="form__address--icon form__icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="form__address--input form__input">
+                            <input
+                                type="text"
+                                id="address"
+                                placeholder="address"
+                                name="address"
+                            />
+                        </div>
                     </div>
-                    <div class="form__address--input form__input">
-                        <input
-                            type="text"
-                            id="address"
-                            placeholder="address"
-                            name="address"
-                        />
+                    <p id="errorAddress">
+                    <?php if (!empty($errors['address'])) {
+                    echo $errors['address'];
+                } ?>
+                    </p><br>
+                    <div class="form__submit">
+                        <button type="submit" name="register">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
-                <p id="errorAddress">
-                <?php if (!empty($errors['address'])) {
-                  echo $errors['address'];
-            } ?>
-                </p><br>
-                <div class="form__submit">
-                    <button type="submit" name="register">
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-        <p id="errorregister">
-        <?php
-        
-        if (!empty($success_message)) {
-            echo  $success_message ;
-        } else if (!empty($errors['register'])) {
-            echo $errors['register'] ;
-        }
-        
-        ?>
-        </p>
+            <p id="errorregister">
+            <?php
+            
+            if (!empty($success_message)) {
+                echo  $success_message ;
+            } else if (!empty($errors['register'])) {
+                echo $errors['register'] ;
+            }
+            
+            ?>
+            </p>
         
         
             </form>
         
-
+    </div>
         
     </body>
 </html>
