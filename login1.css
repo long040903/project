@@ -19,7 +19,7 @@ body {
     justify-content: center;
     height: 100vh;
     font-family: "Quicksand";
-        background: url(images/nuoc-ep6.jpg) no-repeat;
+        background: url(../images/foody-mobile-45564654-jpg-313-636127521466786573.jpeg) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -67,7 +67,6 @@ input {
 }
 .form__icon {
     font-size: 2rem;
-    background: var(--main-color);
     width: 5rem;
     display: flex;
     align-items: center;
@@ -86,12 +85,12 @@ input {
     padding-left: 1rem;
     font-size: 1.7rem;
     color: #737171;
-    background: var(--main-color);
+    background: #ededed;
     transition: background-color 0.4s;
 }
-/* .form__input:hover > input {
-    background-color: #434a52;
-} */
+.form__input:hover > input {
+    background-color: var(--main-color);
+}
 
 .form__submit button {
     width: 100%;
@@ -149,4 +148,7 @@ a{
     display: grid;
     grid-template-columns: auto auto;
     
+}
+.container a:hover{
+    background: var(--main-color);
 }

@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         
         
-        <link rel="stylesheet" href="login.css" />
+        <link rel="stylesheet" href="login1.css" />
     </head>
     <body>
         
