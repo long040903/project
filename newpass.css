@@ -1,0 +1,122 @@
+/* Google font */
+@import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap);
+
+:root{
+    --main-color:#d3ad7f;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+
+    font-size: 62.5%;
+}
+body {
+    padding-top: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Quicksand";
+    /* background: url(images/ca-phe1.jpeg) no-repeat; */
+    background-size: cover;
+    background-position: center;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+.container {
+    background: white;
+    width: 40rem;
+    height: 55rem;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    position: relative;
+    z-index: 1;
+}
+#errorUsername , #errorPassword , #errorNewpassword , #errorEmail , #errorAddress , #errorregister{
+    
+    font-size: 1.3rem;
+    color: rgb(248, 61, 61);
+    margin: -1rem 1rem;
+}
+.header {
+    color: #615f5f;
+    text-align: center;
+}
+.header__icon i {
+    font-size: 7rem;
+}
+.header__title {
+    font-size: 2rem;
+}
+.form {
+    width: 100%;
+}
+.form > div {
+    height: 5rem;
+    margin: 1.5rem 0;
+}
+.form__username,
+.form__password,
+.form__newpassword , 
+.form__email{
+    display: flex;
+}
+.form__icon {
+    font-size: 2rem;
+    width: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: bisque;
+}
+.form__icon i {
+    color: #606468;
+}
+.form__input {
+    width: 100%;
+    position: relative;
+}
+.form__input > input {
+    width: 100%;
+    height: 100%;
+    padding-left: 1rem;
+    font-size: 1.7rem;
+    color: #737171;
+    background: #ededed;
+    transition: background-color 0.4s;
+}
+.form__input > input:hover{
+    background: var(--main-color);
+}
+.form__submit button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.4s;
+}
+.form__submit button i {
+    color: #615f5f;
+    font-size: 3rem;
+    transition: all 0.4s;
+}
+.form__submit button:hover {
+    background: var(--main-color);
+    transition: all 0.4s;
+}
+.form__submit button:hover i {
+    color: bisque;
+    transition: all 0.4s;
+}
+
