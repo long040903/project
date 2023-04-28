@@ -77,6 +77,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: bisque;
 }
 .form__icon i {
     color: #606468;
