@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- custom css file link -->
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="home1.css">
 
 </head>
 <body>
@@ -22,15 +22,15 @@
 
     <header class="header">
 
-        <a href="home.html" class="logo"><i class="icofont-juice"></i> juice </a>
+        <a href="home.php" class="logo"><i class="icofont-juice"></i> juice </a>
 
         <nav class="navbar">
-            <a href="home.html">home</a>
-            <a href="shop.html">shop</a>
-            <a href="about.html">about</a>
-            <a href="review.html">review</a>
-            <a href="blogs.html">blogs</a>
-            <a href="contact.html">contact</a>
+            <a href="home.php">home</a>
+            <a href="shop.php">shop</a>
+            <a href="about.php">about</a>
+            <a href="review.php">review</a>
+            <a href="blogs.php">blogs</a>
+            <a href="contact.php">contact</a>
         </nav>
 
         <div class="icons">
@@ -48,7 +48,7 @@
         <div class="shopping-cart">
             <div class="box">
                 <i class="fas fa-times"></i>
-                <img src="/images/nuoc-ep4.jpg" alt="">
+                <img src="images/nuoc-ep4.jpg" alt="">
                 <div class="content">
                     <h3>juice</h3>
                     <span class="quantity">1</span>
@@ -59,7 +59,7 @@
 
             <div class="box">
                 <i class="fas fa-times"></i>
-                <img src="/images/nuoc-ep6.jpg" alt="">
+                <img src="images/nuoc-ep6.jpg" alt="">
                 <div class="content">
                     <h3>juice</h3>
                     <span class="quantity">1</span>
@@ -70,7 +70,7 @@
 
             <div class="box">
                 <i class="fas fa-times"></i>
-                <img src="/images/nuoc-ep7.jpg" alt="">
+                <img src="images/nuoc-ep7.jpg" alt="">
                 <div class="content">
                     <h3>juice</h3>
                     <span class="quantity">1</span>
@@ -85,56 +85,3 @@
     </header>
 
 <!-- header section ends -->
-
-
-
-
-
-
-
-
-
-
-<!-- footer section starts  -->
-
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="home.html"><i class="fas fa-arrow-right"></i> home</a>
-                <a href="shop.html"><i class="fas fa-arrow-right"></i> shop</a>
-                <a href="about.html"><i class="fas fa-arrow-right"></i> about</a>
-                <a href="review.html"><i class="fas fa-arrow-right"></i> review</a>
-                <a href="blogs.html"><i class="fas fa-arrow-right"></i> blogs</a>
-                <a href="contact.html"><i class="fas fa-arrow-right"></i> contact</a>
-            </div>
-
-            <div class="box">
-                <h3>extra links</h3>
-                <a href="#"><i class="fas fa-arrow-right"></i> my order</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> my favorite</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> my wishlist</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> my account</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> terms or user</a>
-            </div>
-
-            <div class="box">
-                <h3>extra links</h3>
-                <a href="#"><i class="fas fa-arrow-right"></i> my order</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> my favorite</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> my wishlist</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> my account</a>
-                <a href="#"><i class="fas fa-arrow-right"></i> terms or user</a>
-            </div>
-
-        </div>
-
-    </section>
-
-<!-- footer section ends  -->
-
-<script src="home.js"></script>
-</body>
-</html>

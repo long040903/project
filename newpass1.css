@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap);
 
 :root{
-    --main-color:#d3ad7f;
+    --green:#bac34e;
 }
 * {
     padding: 0;
@@ -19,7 +19,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Quicksand";
-    /* background: url(images/ca-phe1.jpeg) no-repeat; */
+     background: url(images/tao.webp) no-repeat; 
     background-size: cover;
     background-position: center;
 }
@@ -31,7 +31,6 @@ input {
 .container {
     background: white;
     width: 40rem;
-    height: 55rem;
     padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
@@ -48,7 +47,7 @@ input {
     margin: -1rem 1rem;
 }
 .header {
-    color: #615f5f;
+    color: var(--green);
     text-align: center;
 }
 .header__icon i {
@@ -76,10 +75,10 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: bisque;
+    background: #ededed;
 }
 .form__icon i {
-    color: #606468;
+    color: var(--green);
 }
 .form__input {
     width: 100%;
@@ -95,7 +94,10 @@ input {
     transition: background-color 0.4s;
 }
 .form__input > input:hover{
-    background: var(--main-color);
+    background: var(--green);
+}
+.form__input > input:hover::placeholder{
+    color: white;
 }
 .form__submit button {
     width: 100%;
@@ -112,11 +114,11 @@ input {
     transition: all 0.4s;
 }
 .form__submit button:hover {
-    background: var(--main-color);
+    background: var(--green);
     transition: all 0.4s;
 }
 .form__submit button:hover i {
-    color: bisque;
+    color: white;
     transition: all 0.4s;
 }
 

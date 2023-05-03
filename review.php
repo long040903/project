@@ -1,158 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review</title>
+<?php
+require_once 'header.php'
+?>
 
-    <link rel="stylesheet" href="review.css">
-</head>
-<body>
-    <!-- review section starts -->
 
-    <section class="review" id="review">
+<div class="heading">
+    <h1>client's review</h1>
+    <p><a href="home.html">home >></a> review</p>
+</div>
 
-        <h1 class="heading"> customer`s <span>review</span></h1>
-        <div class="box-container">
+<section class="info-container">
+    
 
-            <div class="box">
+    <div class="info">
+        <a href="#" class="fas fa-truck-fast"></a>
+        <div class="content">
+            <h3>fast delivery</h3>
+            <span>within 30 minutes</span>
+        </div>
+    </div>
 
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/khoailangthang.jpeg" class="user" alt="">
+    <div class="info">
+        <a href="#" class="fas fa-phone-volume"></a>
+        <div class="content">
+            <h3>24/7 available</h3>
+            <span>call us anytime</span>
+        </div>
+    </div>
+
+    <div class="info">
+        <a href="#" class="fas fa-credit-card"></a>
+        <div class="content">
+            <h3>easy payments</h3>
+            <span>cash or credits</span>
+        </div>
+    </div>
+
+</section>
+
+<section class="review">
+
+    <div class="box">
+        <div class="user">
+            <img src="/images/khoailangthang.jpeg" alt="">
+            <div class="info">
                 <h3>khoai lang thang</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/ninhtito.jpeg" class="user" alt="">
-                <h3>Ninh TiTo</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/ansaphn.jpeg" class="user" alt="">
-                <h3>Ăn sập HN</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/no-food-phobia.jpg" class="user" alt="">
-                <h3>No food phobia</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/no-food-phobia.jpg" class="user" alt="">
-                <h3>No food phobia</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/no-food-phobia.jpg" class="user" alt="">
-                <h3>No food phobia</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/no-food-phobia.jpg" class="user" alt="">
-                <h3>No food phobia</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/no-food-phobia.jpg" class="user" alt="">
-                <h3>No food phobia</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-            </div>
-
-            <div class="box">
-
-                <img src="images/img-daukep.png" style="width: 30%;">
-                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-                <img src="images/no-food-phobia.jpg" class="user" alt="">
-                <h3>No food phobia</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
+                <span>happy client</span>
             </div>
         </div>
-    </section>
+        <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
+    </div>
 
-    <!-- review section ends -->
-</body>
-</html>
+    <div class="box">
+        <div class="user">
+            <img src="/images/no-food-phobia.jpg" alt="">
+            <div class="info">
+                <h3>no food phobia</h3>
+                <span>happy client</span>
+            </div>
+        </div>
+        <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
+    </div>
+
+    <div class="box">
+        <div class="user">
+            <img src="/images/ninhtito.jpeg" alt="">
+            <div class="info">
+                <h3>ninhtito</h3>
+                <span>happy client</span>
+            </div>
+        </div>
+        <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
+    </div>
+
+    <div class="box">
+        <div class="user">
+            <img src="/images/ansaphn.jpeg" alt="">
+            <div class="info">
+                <h3>an sap HN</h3>
+                <span>happy client</span>
+            </div>
+        </div>
+        <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero meno fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+require_once 'footer.php'
+?>

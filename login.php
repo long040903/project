@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
             $sql = "SELECT * FROM user WHERE username='$username' and password='$password_hash'";
             $res = $conn->query($sql);
             if (($res->num_rows) > 0 ) {
-              header("location:home-page.php");
+              header("location:home.php");
             } else {
                 $errors['failed']="Name or password invalid";
             }
@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         
         
-        <link rel="stylesheet" href="login.css" />
+        <link rel="stylesheet" href="login1.css" />
     </head>
     <body>
         
@@ -118,7 +118,7 @@ if (isset($_POST['login'])) {
                     
                     ?>
                 </p>
-        <div class="register" style="height: 10px;">
+        <div class="login" style="height: 10px;">
             <div class="member" ><p class="p">Not a member?</p></div>
             <div class="signup" ><a href="./register.php" class="a">Signup now</a></div>
         </div>

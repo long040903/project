@@ -37,7 +37,7 @@ if (isset($_POST['register'])) {
     if ($res) {
         // $errors['Register']="Đăng kí thành công. Tài khoản $username, số điện thoại $phone đã được tạo.";
         
-        header("location:login2.php");
+        header("location:login.php");
         
     } else {
         $errors['failed']="Đăng kí không thành công.";
@@ -66,7 +66,7 @@ if (isset($_POST['register'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         
         
-        <link rel="stylesheet" href="register1.css" />
+        <link rel="stylesheet" href="register.css" />
     </head>
     <body>
         

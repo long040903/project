@@ -49,7 +49,7 @@ if(isset($_POST['Change'])){
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
         />
 
-    <link rel="stylesheet" href="newpass.css" />
+    <link rel="stylesheet" href="newpass1.css" />
 </head>
 <body>
     <div class="container">
