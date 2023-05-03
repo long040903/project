@@ -5,7 +5,7 @@ require_once 'header.php'
 
 <div class="heading">
     <h1>client's review</h1>
-    <p><a href="home.html">home >></a> review</p>
+    <p><a href="home.php">home >></a> review</p>
 </div>
 
 <section class="info-container">
@@ -41,7 +41,7 @@ require_once 'header.php'
 
     <div class="box">
         <div class="user">
-            <img src="/images/khoailangthang.jpeg" alt="">
+            <img src="images/khoailangthang.jpeg" alt="">
             <div class="info">
                 <h3>khoai lang thang</h3>
                 <span>happy client</span>
@@ -52,7 +52,7 @@ require_once 'header.php'
 
     <div class="box">
         <div class="user">
-            <img src="/images/no-food-phobia.jpg" alt="">
+            <img src="images/no-food-phobia.jpg" alt="">
             <div class="info">
                 <h3>no food phobia</h3>
                 <span>happy client</span>
@@ -63,7 +63,7 @@ require_once 'header.php'
 
     <div class="box">
         <div class="user">
-            <img src="/images/ninhtito.jpeg" alt="">
+            <img src="images/ninhtito.jpeg" alt="">
             <div class="info">
                 <h3>ninhtito</h3>
                 <span>happy client</span>
@@ -74,7 +74,7 @@ require_once 'header.php'
 
     <div class="box">
         <div class="user">
-            <img src="/images/ansaphn.jpeg" alt="">
+            <img src="images/ansaphn.jpeg" alt="">
             <div class="info">
                 <h3>an sap HN</h3>
                 <span>happy client</span>

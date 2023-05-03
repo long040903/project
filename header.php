@@ -29,7 +29,7 @@
             <a href="shop.php">shop</a>
             <a href="about.php">about</a>
             <a href="review.php">review</a>
-            <a href="blogs.php">blogs</a>
+            <a href="blog.php">blogs</a>
             <a href="contact.php">contact</a>
         </nav>
 

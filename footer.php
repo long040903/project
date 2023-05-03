@@ -6,12 +6,12 @@
 
     <div class="box">
         <h3>quick links</h3>
-        <a href="home.html"><i class="fas fa-arrow-right"></i> home</a>
-        <a href="shop.html"><i class="fas fa-arrow-right"></i> shop</a>
-        <a href="about.html"><i class="fas fa-arrow-right"></i> about</a>
-        <a href="review.html"><i class="fas fa-arrow-right"></i> review</a>
-        <a href="blogs.html"><i class="fas fa-arrow-right"></i> blogs</a>
-        <a href="contact.html"><i class="fas fa-arrow-right"></i> contact</a>
+        <a href="home.php"><i class="fas fa-arrow-right"></i> home</a>
+        <a href="shop.php"><i class="fas fa-arrow-right"></i> shop</a>
+        <a href="about.php"><i class="fas fa-arrow-right"></i> about</a>
+        <a href="review.php"><i class="fas fa-arrow-right"></i> review</a>
+        <a href="blogs.php"><i class="fas fa-arrow-right"></i> blogs</a>
+        <a href="contact.php"><i class="fas fa-arrow-right"></i> contact</a>
     </div>
 
     <div class="box">
