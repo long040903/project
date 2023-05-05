@@ -25,7 +25,7 @@
 
     <div class="box">
         <h3>Contact Info</h3>
-        <a href="#"><i class="fas fa-location-dot"></i> Aptech Computer Education
+        <a href="#"><i class="fas fa-location-dot"></i> Aptech Computer Education <br>
             APTECH Building, Doi Can 285, Lieu Giai, Ba Dinh <br>
             Ha Noi
         </a>

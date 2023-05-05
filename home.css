@@ -403,15 +403,32 @@ section{
     background: rgba(0,0,0,.7);
     padding: 1.5rem 0;
     position: absolute;
-    bottom: -6rem;
+    top: -6rem;
     left: 0;
     right: 0;
     z-index: 10;
     margin-left: 0;
     color: white;
+    width: 50%;
 }
 .products .box-container .box:hover .form form a  {
-    bottom: 0;
+    top: 0;
+}
+.products .box-container .box .form form button {
+    text-align: center;
+    background: rgba(0,0,0,.7);
+    padding: 1.5rem 0;
+    position: absolute;
+    top: -6rem;
+    right: 0;
+    z-index: 10;
+    margin-left: 0;
+    color: white;
+    width: 50%;
+    font-size: 2.5rem;
+}
+.products .box-container .box:hover .form form button{
+    top: 0;
 }
 
 .about{
