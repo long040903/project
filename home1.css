@@ -33,18 +33,22 @@ section{
     padding-top: 12rem;
     padding-bottom: 8rem;
     text-align: center;
+    background: url(images/our-about.webp) no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .heading h1{
-    color: var(--black);
+    color: white;
     font-size: 4rem;
 }
 .heading p{
     padding-top: 1rem;
     font-size: 2rem;
-    color: var(--light-color);
+    color: white;
 }
 .heading a{
     padding-right: .5rem;
+    color: white;
 }
 .heading a:hover{
     color: var(--green);
@@ -237,9 +241,9 @@ section{
         opacity: 0;
     }
 }
-.home{
+ .home{
     padding-top: 14rem;
-}
+} 
 .home .slides-container .slide{
     display: flex;
     align-items: center;
@@ -271,6 +275,7 @@ section{
     width: 100%;
     animation: feadUp .4s linear;
     height: 450px;
+    object-fit: cover;
 }
 .home #next-slide,#prev-slide{
     position: absolute;
@@ -342,16 +347,14 @@ section{
     text-align: center;
 }
 .category .box-container .box img{
-    height: 15rem;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
-.category .box-container .box h3{
-    font-size: 2rem;
-    margin: 1rem 0;
-    color: var(--light-color);
+.category .box-container .box img:hover{
+    transform: scale(1.1);
 }
-.category .box-container .box:hover h3{
-    color: var(--green);
-}
+
 .products .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -363,33 +366,7 @@ section{
     text-align: center;
     overflow: hidden;
 }
-.products .box-container .box:hover .icons{
-    top: 0;
-}
-.products .box-container .box .icons{
-    position: absolute;
-    top: -105%;
-    left: 0;
-    height: 30rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(247, 240, 240, 0.54);
-    gap: 1rem;
-}
-.products .box-container .box .icons a{
-    font-size: 2rem;
-    height: 5rem;
-    width: 5rem;
-    line-height: 5rem;
-    background: white;
-    box-shadow: var(--box-shadow);
-}
-.products .box-container .box .icons a:hover{
-    background: var(--green);
-    color: white;
-}
+
 .products .box-container .box .image{
     height: 30rem;
     width: 100%;
@@ -399,6 +376,9 @@ section{
     height: 100%;
     width: 100%;
     object-fit: cover;
+}
+.products .box-container .box .image img:hover{
+    transform: scale(1.2);
 }
 .products .box-container .box .content {
     padding: 1.5rem;
@@ -411,6 +391,27 @@ section{
     font-size: 2rem;
     color: var(--black);
     padding: 1rem 0;
+}
+.products .box-container .box .form  {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+.products .box-container .box .form form a{
+    text-align: center;
+    background: rgba(0,0,0,.7);
+    padding: 1.5rem 0;
+    position: absolute;
+    bottom: -6rem;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-left: 0;
+    color: white;
+}
+.products .box-container .box:hover .form form a  {
+    bottom: 0;
 }
 
 .about{

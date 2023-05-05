@@ -8,7 +8,7 @@ require_once 'header.php'
 
 <div class="heading">
     <h1>contact us</h1>
-    <p><a href="home.html">home >></a> contact</p>
+    <p><a href="home.php">home >></a> contact</p>
 </div>
 
 <section class="contact">

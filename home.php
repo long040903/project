@@ -1,5 +1,12 @@
 <?php
-require_once 'header.php'
+require_once 'header.php';
+
+require_once "connect.php";
+require_once "Cart/cart.php";
+require_once "Cart/addcart.php";
+
+ 
+$images_folder = "ADMIN/images/";
 ?>
 
 
@@ -12,7 +19,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/nuoc-ep1.jpeg" alt="">
@@ -23,7 +29,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/nuoc-ep2.webp" alt="">
@@ -34,7 +39,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/nuoc-ep3.jpg" alt="">
@@ -45,7 +49,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/nuoc-ep4.jpg" alt="">
@@ -56,7 +59,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/nuoc-ep6.jpg" alt="">
@@ -67,7 +69,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/nuoc-ep7.jpg" alt="">
@@ -78,7 +79,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/nuoc-ep-thanh-long.webp" alt="">
@@ -89,7 +89,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/kiwi-ep.jpg" alt="">
@@ -100,7 +99,6 @@ require_once 'header.php'
             <div class="content">
                 <span>fresh and organic</span>
                 <h3>upto 50% off</h3>
-                <a href="#" class="btn">shop now</a>
             </div>
             <div class="image">
                 <img src="images/dao-ep.jpg" alt="">
@@ -119,6 +117,9 @@ require_once 'header.php'
     <div class="banner">
         <img src="images/nuoc-ep-thanh-long.webp" alt="">
         <div class="content">
+            
+            
+            
             <span>limited sales</span>
             <h3>upto 50% off</h3>
             <a href="#" class="btn">shop now</a>

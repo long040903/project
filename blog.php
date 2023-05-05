@@ -6,7 +6,7 @@ require_once 'header.php'
 
 <div class="heading">
     <h1>our blogs</h1>
-    <p><a href="home.html">home >></a> blogs</p>
+    <p><a href="home.php">home >></a> blogs</p>
 </div>
 
 <section class="blogs">

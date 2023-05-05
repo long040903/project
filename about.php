@@ -5,7 +5,7 @@ require_once 'header.php'
 
 <div class="heading">
     <h1>about us</h1>
-    <p><a href="home.html">home >></a> about</p>
+    <p><a href="home.php">home >></a> about</p>
 </div>
 
 

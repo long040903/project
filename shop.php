@@ -1,5 +1,13 @@
-<?php
-require_once 'header.php'
+<?php 
+require_once 'header.php';
+
+require_once "connect.php";
+require_once "Cart/cart.php";
+require_once "Cart/addcart.php";
+
+ 
+$images_folder = "ADMIN/uploads/";
+
 ?>
 
 
@@ -15,23 +23,15 @@ require_once 'header.php'
     <div class="box-container">
 
         <a href="#" class="box">
-            <img src="images/cam-ep.webp" alt="">
-            <h3>organe juice</h3>
+            <img src="images/Category-rau.jpg" alt="">
         </a>
 
         <a href="#" class="box">
-            <img src="images/nuoc-ep4.jpg" alt="">
-            <h3>watermelon juice</h3>
+            <img src="images/Category-can-tay.webp" alt="">
         </a>
 
         <a href="#" class="box">
-            <img src="images/dua-chuot-ep.jpg" alt="">
-            <h3>cucumber juice</h3>
-        </a>
-
-        <a href="#" class="box">
-            <img src="images/nuoc-ep7.jpg" alt="">
-            <h3>mango juice</h3>
+            <img src="images/Category-qua.webp" alt="">
         </a>
     </div>
 
@@ -41,114 +41,66 @@ require_once 'header.php'
 
     <h1 class="title"> our <span>products</span><a href="#">view all >></a></h1>
 
-    <div class="box-container">
+    
 
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-thumbs-up"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="images/dua-ep.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>pineapple juice</h3>
-                <div class="price">$0.8</div>
-            </div>
-        </div>
+        
+            
+            <?php
+                $sql = "SELECT * FROM product";
+                $result = mysqli_query($conn, $sql);
+               
+               
+                // In ra thông tin sản phẩm
+                if (mysqli_num_rows($result) > 0) {
+                    // Duyệt qua các hàng trong bảng sản phẩm
+                    echo '<div class="box-container">';
+                    while($row = mysqli_fetch_assoc($result)) {
+                        
+                        echo '<div class="box">';
+                        $image_path = $images_folder . $row['img'];
+                        if (file_exists($image_path)) {
+                            echo '<div class="image">';
+                            echo "<img src='data:image/jpeg;base64," . base64_encode(file_get_contents($image_path)) . "' alt='Hình ảnh sản phẩm'>";
+                            echo '</div>';
+                        } else {
+                            echo "<p>Không tìm thấy ảnh sản phẩm</p>";
+                        }
 
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-thumbs-up"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="images/dao-ep.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>juice</h3>
-                <div class="price">$0.8</div>
-            </div>
-        </div>
+                        
+                        echo '<div class="content">';
+                        echo "<h3>" . $row["name"]. "</h3>";
+                        echo '<div class="price">' . $row["price"]. '</div>';
+                        echo '</div>';
+                        
 
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-thumbs-up"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="images/kiwi-ep.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>kiwi juice</h3>
-                <div class="price">$0.8</div>
-            </div>
-        </div>
+                        echo '<div class="form">';
+                         echo '<form class="icons" method="POST" action="cart.php">';
+                         echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
+                         echo '<a class="fas fa-eye" href="../Product/detail.php?id=' . $row["id"] . '"></a>';
+                         echo '</form>';
+                         echo' <form action="../Cart/cart.php" method="POST">';
+                         echo '<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">' ;
+                         echo' <a type="submit" name="add_to_cart" value="Thêm vào giỏ hàng"></a>';
+                         echo'</form>';
+                         echo '</div>';
+                         echo '</div>';
+                         
+                    }
+                    echo '</div>';
+                } else {
+                    echo "Không có sản phẩm nào";
+                }
+              
+                
+                // Đóng kết nối
+                mysqli_close($conn);
+                ?>
+            
+            
+        
 
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-thumbs-up"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="images/bo-ep.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>avocado juice</h3>
-                <div class="price">$0.8</div>
-            </div>
-        </div>
 
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-thumbs-up"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="images/viet-quat-ep.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>blueberries juice</h3>
-                <div class="price">$0.8</div>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-thumbs-up"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="images/cam-ep.webp" alt="">
-            </div>
-            <div class="content">
-                <h3>orange juice</h3>
-                <div class="price">$0.8</div>
-            </div>
-        </div>
-
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-thumbs-up"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="images/nuoc-ep-thanh-long.webp" alt="">
-            </div>
-            <div class="content">
-                <h3>pitaya juice</h3>
-                <div class="price">$0.8</div>
-            </div>
-        </div>
-
-    </div>
+    
 
 </section>
 
