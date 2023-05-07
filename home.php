@@ -1,12 +1,6 @@
 <?php
 require_once 'header.php';
 
-require_once "connect.php";
-require_once "Cart/cart.php";
-require_once "Cart/addcart.php";
-
- 
-$images_folder = "ADMIN/images/";
 ?>
 
 
@@ -115,30 +109,30 @@ $images_folder = "ADMIN/images/";
 <section class="banner-container">
 
     <div class="banner">
-        <img src="images/nuoc-ep-thanh-long.webp" alt="">
+        <img src="images/Category-can-tay.webp" alt="">
         <div class="content">
             
             
             
-            <span>limited sales</span>
+            <span>vegetables juice sales</span>
             <h3>upto 50% off</h3>
             <a href="#" class="btn">shop now</a>
         </div>
     </div>
 
     <div class="banner">
-        <img src="images/nuoc-ep6.jpg" alt="">
+        <img src="images/Category-qua.webp" alt="">
         <div class="content">
-            <span>limited sales</span>
+            <span>fruits sales</span>
             <h3>upto 50% off</h3>
             <a href="#" class="btn">shop now</a>
         </div>
     </div>
 
     <div class="banner">
-        <img src="images/nuoc-ep7.jpg" alt="">
+        <img src="images/Category-hat.webp" alt="">
         <div class="content">
-            <span>limited sales</span>
+            <span>cereal grains sales</span>
             <h3>upto 50% off</h3>
             <a href="#" class="btn">shop now</a>
         </div>

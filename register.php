@@ -5,7 +5,7 @@ if (isset($_POST['register'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
   $password_hash = sha1($password);
-  $phone = $_POST['phone'];
+  $phoneNumber = $_POST['phoneNumber'];
   $email = $_POST['email'];
   $address = $_POST['address'];
 
@@ -15,9 +15,9 @@ if (isset($_POST['register'])) {
   if(empty($password)){
     $errors['password']='Password is not empty!';
   }
-  if(empty($phone)){
-    $errors['phone']='Phone is not empty!';
-  }
+  if(!preg_match("/^[0-9]{10,11}$/",$phoneNumber)){
+    $errors['phoneNumber']= 'phone must be valid!';
+}
   if(empty($email)){
     $errors['email']='Email is not empty!';
   }
@@ -31,11 +31,12 @@ if (isset($_POST['register'])) {
 
     $erros['failed']=" Tài khoản hoặc mật khẩu không chính xác vui lòng đăng nhập lại";
   } else {
-    $sql = "INSERT INTO user (username,password,email,phoneNumber,address) VALUES ('$username','$password_hash','$email','$phone','$address')";
+    $sql = "INSERT INTO user (username,password,email,phoneNumber,address) VALUES ('$username','$password_hash','$email','$phoneNumber','$address')";
   //  var_dump($sql);
     $res = $conn->query($sql);
     if ($res) {
         // $errors['Register']="Đăng kí thành công. Tài khoản $username, số điện thoại $phone đã được tạo.";
+        
         
         header("location:login.php");
         

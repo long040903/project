@@ -6,11 +6,12 @@ if (isset($_POST['addprd'])) {
     $image_tmp = $_FILES['image']['tmp_name'];
     $quantity	= $_POST['quantity'];
     $price = $_POST['price'];
+    $cate = $_POST['cate'];
     $image = time() . '_' . $image;
 
     try {
         $conn->begin_transaction();
-        $sql = "insert into product(name,img,quantity,price) values('$name','$image', '$quantity','$price')";
+        $sql = "insert into product(name,img,quantity,price) values('$name','$image', '$quantity','$price','$cate')";
         $result = $conn->query($sql);
         move_uploaded_file($image_tmp, 'uploads/' . $image);
 
@@ -53,20 +54,25 @@ if ($res->num_rows > 0) {
             <div class="card-body">
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="form">
-                        <label for="">Ten san pham: </label>
-                        <input type="text" name="product" placeholder="Ten san pham" class="form-control mb-2">
+                        <input type="text" name="product" placeholder="name" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <label for="">Gia san pham: </label>
-                        <input type="number" name="price" placeholder="Gia san pham" class="form-control mb-2">
+                        <input type="number" name="price" placeholder="price" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <label for="">Số lượng: </label>
-                        <input type="number" name="quantity" placeholder="Nhập số lượng" class="form-control mb-2">
+                        <input type="number" name="quantity" placeholder="quantity" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <label for="">Anh san pham: </label>
-                        <input type="file" name="image" placeholder="Anh san pham" class="form-control mb-2">
+                        <label for="image">image </label>
+                        <input type="file" name="image"  class="form-control mb-2">
+                    </div>
+                    <div class="form">
+                        <label for="cate">category </label>
+                        <select name="cate" id="cate" class="form-control mb-2">
+                            <option value="vegetables">vegetables</option>
+                            <option value="fruit">fruit</option>
+                            <option value="junk food">junk food</option>
+                        </select>
                     </div>
                     </div>
                     <div class="form">

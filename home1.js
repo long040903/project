@@ -3,13 +3,13 @@ let searchForm = document.querySelector('.search-form');
 document.querySelector('#search-btn').onclick = () =>{
     searchForm.classList.toggle('active');
     navbar.classList.remove('active');
-    cart.classList.remove('active');
+    caret.classList.remove('active');
 }
 
-let cart = document.querySelector('.shopping-cart');
+let caret = document.querySelector('.caret_down');
 
-document.querySelector('#cart-btn').onclick = () =>{
-    cart.classList.toggle('active');
+document.querySelector('#caret-down').onclick = () =>{
+    caret.classList.toggle('active');
     navbar.classList.remove('active');
     searchForm.classList.remove('active');
 }
@@ -19,13 +19,13 @@ let navbar = document.querySelector('.navbar');
 document.querySelector('#menu-btn').onclick = () =>{
     navbar.classList.toggle('active');
     searchForm.classList.remove('active');
-    cart.classList.remove('active');
+    caret.classList.remove('active');
 }
 
 window.onscroll = () =>{
     navbar.classList.remove('active');
     searchForm.classList.remove('active');
-    cart.classList.remove('active');
+    caret.classList.remove('active');
 }
 
 let slides = document.querySelectorAll('.home .slides-container .slide');
@@ -48,3 +48,12 @@ function prev(){
     }
     slides[index].classList.add('active');
 }
+
+
+// JavaScript code
+const caretDown = document.getElementById("#caret-down");
+const caretDownMenu = document.querySelector(".caret_down");
+
+caretDown.addEventListener("click", function () {
+  caretDownMenu.classList.toggle("show");
+});

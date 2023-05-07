@@ -25,14 +25,14 @@ try{
     $conn->query($sql);
     $res = $conn->query($sql);
 
-    $sql="create table if not exists `cate`(
+    $sql="CREATE table if not exists `cate`(
       `id` INT AUTO_INCREMENT PRIMARY KEY,
       `name` varchar(100)
       )";
       $conn->query($sql);
       $res = $conn->query($sql);
        
-    $sql = "create table if not exists `product` (
+    $sql = "CREATE table if not exists `product` (
       `id` int  primary key AUTO_INCREMENT,
       `name` varchar(100),
       `img` varchar(100),
@@ -46,7 +46,7 @@ try{
     $res = $conn->query($sql);
 
    
-    $sql = "create table if not exists `cart` (
+    $sql = "CREATE table if not exists `cart` (
       `id` int  primary key AUTO_INCREMENT ,
       productId int,
      `userId` int,

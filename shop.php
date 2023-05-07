@@ -76,7 +76,7 @@ $images_folder = "ADMIN/uploads/";
                         echo '<div class="form">';
                          echo '<form class="icons" method="POST" action="cart.php">';
                          echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
-                         echo '<a class="fas fa-eye" href="../Product/detail.php?id=' . $row["id"] . '"></a>';
+                         echo '<a class="fas fa-eye" href="../Project_ki1/Product/detail.php?id=' . $row["id"] . '"></a>';
                          echo '</form>';
                          echo' <form action="Cart/cart.php" method="POST">';
                          echo '<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">' ;

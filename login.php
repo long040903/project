@@ -2,23 +2,29 @@
 session_start();
 require_once "./connect.php";
 $errors=[];
+error_reporting(0);
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password= $_POST['password'];
     $password_hash = sha1($password);
-    
+    $email = $_POST['email'];
     if(empty($username)){
         $errors['username']='Name is not empty!';
     }
     if(empty($password)){
         $errors['password']='Password is not empty!';
     }
+    if(empty($email)){
+        $errors['email']='email is not empty!';
+    }
     
         if (empty($errors)) {
-            $sql = "SELECT * FROM user WHERE username='$username' and password='$password_hash'";
+            $sql = "SELECT * FROM user WHERE username='$username' and password='$password_hash' and email = '$email' ";
             $res = $conn->query($sql);
             if (($res->num_rows) > 0 ) {
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['email'] = $_POST['email'];
               header("location:home.php");
             } else {
                 $errors['failed']="Name or password invalid";
@@ -47,7 +53,7 @@ if (isset($_POST['login'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         
         
-        <link rel="stylesheet" href="login1.css" />
+        <link rel="stylesheet" href="login.css" />
     </head>
     <body>
         
@@ -101,6 +107,25 @@ if (isset($_POST['login'])) {
                     echo $errors['password'];
                 } ?>
                 </p>
+                <div class="form__email">
+                    <div class="form__email--icon form__icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="form__email--input form__input">
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="email"
+                            name="email"
+                        />
+                    </div>
+                </div>
+                <p id="errorEmail">
+                <?php if (!empty($errors['email'])) {
+                    echo $errors['email'];
+                } ?>
+                </p>
+                
                 <a href="./forgot.php">Forgot password</a><br>
                 <div class="form__submit">
                     <button type="submit" name="login">
