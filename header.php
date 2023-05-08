@@ -21,7 +21,10 @@ error_reporting(0);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- custom css file link -->
-    <link rel="stylesheet" href="home1.css">
+    <link rel="stylesheet" href="home.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </head>
 <body>
@@ -44,8 +47,7 @@ error_reporting(0);
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
             <div id="cart-btn" class="fas fa-shopping-cart"></div>
-            <a href="login.php" id="login-btn" class="fas fa-circle-user"></a>
-            <div class="fas fa-caret-down" id="caret-down">
+            <div class="fas fa-circle-user" id="caret-down">
                 <div class="caret_down">
                 
                 
@@ -66,6 +68,7 @@ error_reporting(0);
                           }
                           echo '<div class="content">';
                         if (isset($_SESSION['username'])) {
+                            echo '<h3>Welcome to our shop </h3>';
                             
                             echo '<span>';
                             echo 'Name: ' . $_SESSION['username'];
@@ -75,8 +78,9 @@ error_reporting(0);
                                 echo 'Email: '. $_SESSION['email'];
                                 echo '</span>';
                             }
+                            echo '<button id="logout-btn" class="btn">logout</button>';
                         } else {
-                            echo '<i class="fa fa-user"></i>'; // hiển thị icon user nếu chưa đăng nhập
+                            echo '<i class="fa fa-user"></i><a href="login.php" class="btn">login now</a>'; // hiển thị icon user nếu chưa đăng nhập
                             
                         }
                         echo '</div>';
@@ -84,21 +88,81 @@ error_reporting(0);
                                     
                                 
                            ?>
-                    <a href="logout.php" class="btn">logout</a>
+
+                </div>
+            </div>
+        </div>
+
                     
+                    <div id="confirm-box">
+                        <h3>Are you sure you want to logout?</h3>
+                        <button id="confirm-yes">Yes</button>
+                        <button id="confirm-no">No</button>
+                    </div>
+                    <div id="logout-success" class="hidden">
+                        Logout successfully. Redirecting to home page...
+                    </div>
+
+
+                    
+                    <script>
+                          // JavaScript code
+                        const caretDown = document.getElementById("caret-down");
+                        const caretDownMenu = document.querySelector(".caret_down");
+
+                        caretDown.addEventListener("click", function () {
+                        caretDownMenu.classList.toggle("show");
+                        caretDownMenu.classList.toggle("hidden");
+                        });
+                        
+                        
+
+                        const logoutBtn = document.getElementById('logout-btn');
+                        const confirmBox = document.getElementById('confirm-box');
+                        const confirmYes = document.getElementById('confirm-yes');
+                        const confirmNo = document.getElementById('confirm-no');
+
+                        logoutBtn.addEventListener('click', () => {
+                            confirmBox.style.display = 'block';
+                        });
+
+                        confirmYes.addEventListener('click', () => {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'logout.php',
+                                success: function() {
+                                    // Show success message
+                                    $('#logout-success').show();
+                                                            
+                                    // Hide confirm box
+                                    $('#confirm-box').hide();
+                                                        
+                                    // Redirect to home page after 3 seconds
+                                    setTimeout(function() {
+                                        window.location.href = 'home.php';
+                                    }, 1000);
+                                }
+                            });
+                        });
+
+                        confirmNo.addEventListener('click', () => {
+                            confirmBox.style.display = 'none';
+                        });
+
+
+                        
+                        
+                    </script>
+
+
+
+
+
+
 
                     
                 
-            </div>
-            </div>
-
-            
-        </div>
-
-        <form action="" method="post" class="search-form">
-            <input type="text" name="search_query" placeholder="search here..." id="search-box">
-            <button type="submit" for="search-box" class="fas fa-search"></button>
-        </form>
+           
         
         
 

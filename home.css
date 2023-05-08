@@ -132,98 +132,102 @@ section{
 .header .icons a:hover{
     color: var(--green);
 }
-.header .search-form{
+
+
+.header .caret_down{
     position: absolute;
-    top: -115%;
-    right: 2rem;
-    width: 50rem;
-    border-radius:  .5rem;
-    display: flex;
-    align-items: center;
-    height: 5.5rem;
-    box-shadow: var(--box-shadow);
-    background:white;
-}
-.header .search-form.active {
-    top:115%;
-}
-.header .search-form input{
-    height: 100%;
-    width: 100%;
-    padding:0 1.2rem;
-    font-size: 1.6rem;
-    color: var(--black);
-    text-transform: none;
-}
-.header .search-form label{
-    font-size: 2.5rem;
-    margin-right: 1.7rem;
-    cursor: pointer;
-    color: var(--light-color);
-}
-.header .search-form label:hover{
-    color: var(--green);
-}
-.header .shopping-cart{
-    position: absolute;
-    top: 115%;
-    right: -105%;
+    display: none;
     background: white;
     border-radius: .5rem;
     box-shadow: var(--box-shadow);
-    width: 35rem;
+    width: 33rem;
     padding: 2rem;
+    left: 75%;
 }
-.header .shopping-cart.active{
-    right: 2rem;
+.header  .caret_down.show  {
+    display: block;
     transition: .3s linear;
 }
-.header .shopping-cart .box{
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-    position: relative;
+.header .icons .caret_down .box{
+    margin-left: 0;
 }
-.header .shopping-cart .box .fa-times{
-    position: absolute;
-    top: 50%;
-    right: 2rem;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    color: var(--light-color);
-    cursor: pointer;
-}
-.header .shopping-cart .box .fa-times:hover{
-    color: var(--green);
-}
-.header .shopping-cart .box img{
-    height: 10rem;
-    width: 15rem;
-}
-.header .shopping-cart .box .content h3{
-    font-size: 1.7rem;
-    padding-bottom: .5rem;
-    color: var(--black);
-}
-.header .shopping-cart .box .content span{
+
+
+.header .icons .caret_down .box .content span{
     font-size: 1.5rem;
     color: var(--light-color);
 }
-.header .shopping-cart .box .content span .multiply{
-    margin: 0 .5rem;
-}
-.header .shopping-cart .total{
-    color: var(--light-color);
-    text-align: center;
-    font-size: 2.2rem;
-}
-.header .shopping-cart .total span{
-    color: var(--black);
-}
-.header .shopping-cart .btn{
+
+
+
+.header .caret_down .btn{
     text-align: center;
     width: 100%;
+}
+.header .icons .fas.fa-circle-user .caret_down .box .content h3{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+ #confirm-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+  
+   #confirm-box h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+    #confirm-box button {
+    margin-right: 10px;
+  }
+
+  
+   #confirm-yes, #confirm-no {
+    background: var(--green);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+   #confirm-yes:hover  {
+    background: red;
+  }
+  #confirm-no:hover{
+    background: var(--black);
+  }
+  #logout-success {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 100px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+} 
+#logout-success h3{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 50px;
 }
 #menu-btn{
     display: none;
@@ -865,6 +869,9 @@ section{
         display: block;
         border-radius: .5rem;
     }
+    .header .caret_down{
+        left: 61%;
+    }
 }
 @media (max-width:450px){
     html{
@@ -875,5 +882,8 @@ section{
     }
     .contact .row form .inputBox input{
         width: 100%;
+    }
+    .header .caret_down{
+        left: 37%;
     }
 } 

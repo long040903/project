@@ -50,10 +50,7 @@ function prev(){
 }
 
 
-// JavaScript code
-const caretDown = document.getElementById("#caret-down");
-const caretDownMenu = document.querySelector(".caret_down");
 
-caretDown.addEventListener("click", function () {
-  caretDownMenu.classList.toggle("show");
-});
+
+
+

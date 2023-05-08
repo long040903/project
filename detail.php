@@ -1,12 +1,11 @@
-<?php
-require_once '../header_detail.php';
-?>
 
 
 <?php
+require_once 'header.php';
+
 session_start();
-require_once "../connect.php";
-$images_folder = "../ADMIN/uploads/";
+
+$images_folder = "ADMIN/uploads/";
 $product_id = $_GET["id"];
 // Truy vấn sản phẩm có ID tương ứng
 $sql = "SELECT * FROM product WHERE id = " . $product_id;
@@ -54,5 +53,5 @@ mysqli_close($conn);
 
 
 <?php
-require_once '../footer.php';
+require_once 'footer.php';
 ?>
