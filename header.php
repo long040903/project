@@ -21,7 +21,7 @@ error_reporting(0);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- custom css file link -->
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="home1.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -100,7 +100,7 @@ error_reporting(0);
                         <button id="confirm-no">No</button>
                     </div>
                     <div id="logout-success" class="hidden">
-                        Logout successfully. Redirecting to home page...
+                        <h3>Logout successfully. Redirecting to home page...</h3>
                     </div>
 
 

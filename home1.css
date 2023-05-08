@@ -697,6 +697,92 @@ section{
 }
 
 
+.category .form {
+    text-align: center;
+}
+
+
+
+.category .form form input[type="text"] {
+    padding: 10px;
+    font-size: 1.6rem;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    outline: none;
+    width: 50%;
+    border:.1rem solid rgba(0,0,0,.1);
+}
+
+.category .form form button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    outline: none;
+    background: #bac34e;
+    color: #fff;
+    cursor: pointer;
+}
+
+.category .form form button[type="submit"]:hover {
+    background: #222;
+}
+
+.category .result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.category .result a {
+    text-decoration: none;
+    color: #000;
+}
+
+.category .result p {
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 400px;
+    margin-top: 10px;
+}
+
+
+.title-cate h3{
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    padding: 1.2rem 0;
+    border-bottom: var(--border);
+    color: var(--black);
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

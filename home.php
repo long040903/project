@@ -55,7 +55,7 @@ require_once 'header.php';
                 <h3>upto 50% off</h3>
             </div>
             <div class="image">
-                <img src="images/nuoc-ep6.jpg" alt="">
+                <img src="images/chanh-leo-ep.jpg" alt="">
             </div>
         </div>
 
@@ -85,7 +85,7 @@ require_once 'header.php';
                 <h3>upto 50% off</h3>
             </div>
             <div class="image">
-                <img src="images/kiwi-ep.jpg" alt="">
+                <img src="images/kiwi-ep.jpeg" alt="">
             </div>
         </div>
 

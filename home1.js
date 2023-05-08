@@ -1,18 +1,6 @@
-let searchForm = document.querySelector('.search-form');
 
-document.querySelector('#search-btn').onclick = () =>{
-    searchForm.classList.toggle('active');
-    navbar.classList.remove('active');
-    caret.classList.remove('active');
-}
 
-let caret = document.querySelector('.caret_down');
 
-document.querySelector('#caret-down').onclick = () =>{
-    caret.classList.toggle('active');
-    navbar.classList.remove('active');
-    searchForm.classList.remove('active');
-}
 
 let navbar = document.querySelector('.navbar');
 

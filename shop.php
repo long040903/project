@@ -16,7 +16,49 @@ $images_folder = "ADMIN/uploads/";
     <p><a href="home.php">home >></a> shop </p>
 </div>
 
+
 <section class="category">
+
+                    <div class="form" >
+                        <form method="get">
+                            <input type="text" name="search_query" placeholder="Tìm kiếm sản phẩm">
+                            <button type="submit" ><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+
+                    <?php
+                    if(isset($_GET['search_query'])) {
+                        $search_query = strtolower($_GET['search_query']);
+                        $search_query = trim(preg_replace('/\s+/', ' ', $search_query));
+
+                        if(!empty($search_query)) {
+                            $sql = "SELECT * FROM product WHERE LOWER(name) LIKE '%$search_query%'";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                echo "<div class='result'>";
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<a href='detail.php?id=" . $row["id"] . "'>";
+                                    echo "<p>";
+                                    echo "Tên sản phẩm: " . $row["name"] . "<br>";
+                                    echo "Giá: " . $row["price"];
+                                    echo "</p>";
+                                    echo "</a>";
+                                }
+                                echo "</div>";
+                            } else {
+                                echo "<div class='result'>Không tìm thấy sản phẩm nào.</div>";
+                            }
+                        } else {
+                            echo "<div class='result'>Vui lòng nhập từ khóa tìm kiếm.</div>";
+                        }
+
+                        $conn->close();
+                    }
+                    ?>
+
+
+
 
     <h1 class="title"> our <span>category</span><a href="#">view all >></a></h1>
 
@@ -37,7 +79,29 @@ $images_folder = "ADMIN/uploads/";
 
 </section>
 
+
+    <section class="vegetables-juice">
+        <div class="title-cate">
+            <h3>Vegetables Juice</h3>
+        </div>
+    </section>
+
+    <section class="Fruits-juice">
+        <div class="title-cate">
+            <h3>Fruits Juice</h3>
+        </div>
+    </section>
+
+    <section class="Cereal Grains-juice">
+        <div class="title-cate">
+            <h3>Cereal Grains Juice</h3>
+        </div>
+    </section>
+
 <section class="products">
+
+
+    
 
     <h1 class="title"> our <span>products</span><a href="#">view all >></a></h1>
 
@@ -76,7 +140,7 @@ $images_folder = "ADMIN/uploads/";
                         echo '<div class="form">';
                          echo '<form class="icons" method="POST" action="cart.php">';
                          echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
-                         echo '<a class="fas fa-eye" href="../Project_ki1/Product/detail.php?id=' . $row["id"] . '"></a>';
+                         echo '<a class="fas fa-eye" href="detail.php?id=' . $row["id"] . '"></a>';
                          echo '</form>';
                          echo' <form action="Cart/cart.php" method="POST">';
                          echo '<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">' ;
@@ -96,7 +160,74 @@ $images_folder = "ADMIN/uploads/";
                 mysqli_close($conn);
                 ?>
             
-            
+            <?php 
+
+
+                // Xác định số bản ghi trên mỗi trang
+                $records_per_page = 4;
+
+                // Xác định trang hiện tại
+                if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+                    $current_page = (int) $_GET['page'];
+                } else {
+                    $current_page = 1;
+                }
+
+                // Tính toán số bản ghi bắt đầu và kết thúc của trang hiện tại
+                $offset = ($current_page - 1) * $records_per_page;
+
+                // Thực hiện câu truy vấn đếm tổng số bản ghi
+                $result = mysqli_query($conn, "SELECT COUNT(*) as total_records FROM product");
+
+
+                // Lấy kết quả đếm tổng số bản ghi
+                $row = mysqli_fetch_assoc($result);
+                $total_records = $row['total_records'];
+
+                // Tính toán số trang
+                $total_pages = ceil($total_records / $records_per_page);
+
+                // Thực hiện câu truy vấn lấy bản ghi cho trang hiện tại
+                $sql = "SELECT * FROM product LIMIT $offset, $records_per_page";
+                $result = mysqli_query($conn, $sql);
+
+                // Hiển thị danh sách bản ghi
+                while ($row = mysqli_fetch_assoc($result)) {
+                echo "<table>";
+                echo "<tr>";
+                echo "<th>Avatar</th>";
+                echo "<th>Name</th>";
+                echo "<th>Email</th>";
+                echo "</tr>";
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td><img src='../BE_PJ/ADMIN/uploads/" . $row['img'] . "' alt='Avatar'></td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['price'] . "</td>";
+                    echo "</tr>";
+                }
+
+                echo "</table>";
+
+                }
+
+
+
+                // Hiển thị phân trang
+                if ($total_pages > 1) {
+                    echo "<ul class='pagination'>";
+                    for ($i = 1; $i <= $total_pages; $i++) {
+                        if ($i == $current_page) {
+                            echo "<li class='active'><a href='?page=$i'>$i</a></li>";
+                        } else {
+                            echo "<li><a href='?page=$i'>$i</a></li>";
+                        }
+                    }
+                    echo "</ul>";
+                }
+
+            ?>
         
 
 
