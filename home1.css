@@ -916,11 +916,14 @@ section{
     }
     .home #next-slide, .home #prev-slide{
         transform: translateY(0);
-        top: 88%;
+        top: 70%;
     }
     .home #prev-slide{
         left:auto;
         right:8rem;
+    }
+    .header .caret_down.show{
+        left: 69%;
     }
 }
 @media (max-width:768px){
@@ -961,6 +964,12 @@ section{
     .header .caret_down{
         left: 61%;
     }
+    .home #next-slide, .home #prev-slide{
+        top: 70%;
+    }
+    .header .caret_down.show{
+        left: 60%;
+    }
 }
 @media (max-width:450px){
     html{
@@ -974,5 +983,8 @@ section{
     }
     .header .caret_down{
         left: 37%;
+    }
+    .header .caret_down.show{
+        left: 32%;
     }
 } 

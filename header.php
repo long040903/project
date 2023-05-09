@@ -37,7 +37,7 @@ error_reporting(0);
 
         <nav class="navbar">
             <a href="home.php">home</a>
-            <a href="shop.php">shop</a>
+            <a href="products.php">products</a>
             <a href="about.php">about</a>
             <a href="review.php">review</a>
             <a href="blog.php">blogs</a>
