@@ -361,7 +361,7 @@ section{
 
 .products .box-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap:1.5rem;
 }
 .products .box-container .box{
@@ -697,13 +697,13 @@ section{
 }
 
 
-.category .form {
+.products .form {
     text-align: center;
 }
 
 
 
-.category .form form input[type="text"] {
+.products .form form input[type="text"] {
     padding: 10px;
     font-size: 1.6rem;
     border-radius: 5px 0 0 5px;
@@ -713,7 +713,7 @@ section{
     border:.1rem solid rgba(0,0,0,.1);
 }
 
-.category .form form button[type="submit"] {
+.products .form form button[type="submit"] {
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 0 5px 5px 0;
@@ -724,11 +724,14 @@ section{
     cursor: pointer;
 }
 
-.category .form form button[type="submit"]:hover {
+.products .form form button[type="submit"]:hover {
     background: #222;
 }
 
-.category .result {
+.products .form .icons .fa-eye:hover{
+    background: #222;
+}
+.products .result {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -736,12 +739,12 @@ section{
     margin-top: 20px;
 }
 
-.category .result a {
+.products .result a {
     text-decoration: none;
     color: #000;
 }
 
-.category .result p {
+.products .result p {
     margin: 0;
     padding: 10px;
     font-size: 16px;

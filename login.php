@@ -109,7 +109,7 @@ if (isset($_POST['login'])) {
                 </p>
                 <div class="form__email">
                     <div class="form__email--icon form__icon">
-                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-envelope"></i>
                     </div>
                     <div class="form__email--input form__input">
                         <input

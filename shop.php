@@ -17,7 +17,9 @@ $images_folder = "ADMIN/uploads/";
 </div>
 
 
-<section class="category">
+<section class="products">
+
+
 
                     <div class="form" >
                         <form method="get">
@@ -26,91 +28,73 @@ $images_folder = "ADMIN/uploads/";
                         </form>
                     </div>
 
+
+
+<h1 class="title"> our <span>products</span><a href="#">view all >></a></h1>
+
+
+
+                    
+
                     <?php
-                    if(isset($_GET['search_query'])) {
+                    if (isset($_GET['search_query'])) {
                         $search_query = strtolower($_GET['search_query']);
                         $search_query = trim(preg_replace('/\s+/', ' ', $search_query));
-
-                        if(!empty($search_query)) {
+                    
+                        if (!empty($search_query)) {
                             $sql = "SELECT * FROM product WHERE LOWER(name) LIKE '%$search_query%'";
                             $result = $conn->query($sql);
-
+                            // dd($_SERVER);
+                    
                             if ($result->num_rows > 0) {
-                                echo "<div class='result'>";
-                                while($row = $result->fetch_assoc()) {
-                                    echo "<a href='detail.php?id=" . $row["id"] . "'>";
-                                    echo "<p>";
-                                    echo "Tên sản phẩm: " . $row["name"] . "<br>";
-                                    echo "Giá: " . $row["price"];
-                                    echo "</p>";
-                                    echo "</a>";
+                                // Hiển thị danh sách sản phẩm trên trang
+                                
+                                $sql = "SELECT * FROM product WHERE LOWER(name) LIKE '%$search_query%'";
+                                $result = $conn->query($sql);
+                    
+                                if ($result->num_rows > 0) {
+                                    echo '<div class="box-container">';
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo '<div class="box">';
+                                        echo "<a href='detail.php?id=" . $row["id"] . "'>";
+                                        echo '<div class="image">';
+                                        echo "<img src='".$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']."/PROJECT_KI1/ADMIN/uploads/" . $row["img"] . "' alt='" . $row["name"] . "'/>";
+                                        echo '</div>';
+                                        echo '<div class="content">';
+                                        echo "<h3>" . $row["name"] . "</h3>";
+                                        echo '<div class="price">' . $row["price"] . '</div>';
+                                        echo "</a>";
+                                        echo '</div>';
+                                        
+
+                                        echo '<div class="form">';
+                                        echo '<form class="icons" method="POST" action="cart.php">';
+                                        echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
+                                        echo '<a class="fas fa-eye" href="detail.php?id=' . $row["id"] . '"></a>';
+                                        echo '</form>';
+                                        echo' <form action="Cart/cart.php" method="POST">';
+                                        echo '<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">' ;
+                                        echo' <button type="submit" name="add_to_cart" class="fas fa-shopping-cart"></button>';
+                                        echo'</form>';
+                                        echo '</div>';
+                                        echo '</div>';
+                                    }
+                                    echo '</div>';
+                                } else {
+                                    echo "<div class='result'>Không tìm thấy sản phẩm nào.</div>";
+                                    
                                 }
-                                echo "</div>";
+                                
                             } else {
                                 echo "<div class='result'>Không tìm thấy sản phẩm nào.</div>";
                             }
                         } else {
                             echo "<div class='result'>Vui lòng nhập từ khóa tìm kiếm.</div>";
                         }
-
+                    
                         $conn->close();
-                    }
-                    ?>
-
-
-
-
-    <h1 class="title"> our <span>category</span><a href="#">view all >></a></h1>
-
-    <div class="box-container">
-
-        <a href="#" class="box">
-            <img src="images/Category-rau.jpg" alt="">
-        </a>
-
-        <a href="#" class="box">
-            <img src="images/Category-can-tay.webp" alt="">
-        </a>
-
-        <a href="#" class="box">
-            <img src="images/Category-qua.webp" alt="">
-        </a>
-    </div>
-
-</section>
-
-
-    <section class="vegetables-juice">
-        <div class="title-cate">
-            <h3>Vegetables Juice</h3>
-        </div>
-    </section>
-
-    <section class="Fruits-juice">
-        <div class="title-cate">
-            <h3>Fruits Juice</h3>
-        </div>
-    </section>
-
-    <section class="Cereal Grains-juice">
-        <div class="title-cate">
-            <h3>Cereal Grains Juice</h3>
-        </div>
-    </section>
-
-<section class="products">
-
-
-    
-
-    <h1 class="title"> our <span>products</span><a href="#">view all >></a></h1>
-
-    
-
-        
-            
-            <?php
-                $sql = "SELECT * FROM product";
+                        }else{
+                            $sql = "SELECT * FROM product";
                 $result = mysqli_query($conn, $sql);
                
                
@@ -155,84 +139,18 @@ $images_folder = "ADMIN/uploads/";
                     echo "Không có sản phẩm nào";
                 }
               
-                
+                }
                 // Đóng kết nối
                 mysqli_close($conn);
-                ?>
             
-            <?php 
+                    ?>
 
-
-                // Xác định số bản ghi trên mỗi trang
-                $records_per_page = 4;
-
-                // Xác định trang hiện tại
-                if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-                    $current_page = (int) $_GET['page'];
-                } else {
-                    $current_page = 1;
-                }
-
-                // Tính toán số bản ghi bắt đầu và kết thúc của trang hiện tại
-                $offset = ($current_page - 1) * $records_per_page;
-
-                // Thực hiện câu truy vấn đếm tổng số bản ghi
-                $result = mysqli_query($conn, "SELECT COUNT(*) as total_records FROM product");
-
-
-                // Lấy kết quả đếm tổng số bản ghi
-                $row = mysqli_fetch_assoc($result);
-                $total_records = $row['total_records'];
-
-                // Tính toán số trang
-                $total_pages = ceil($total_records / $records_per_page);
-
-                // Thực hiện câu truy vấn lấy bản ghi cho trang hiện tại
-                $sql = "SELECT * FROM product LIMIT $offset, $records_per_page";
-                $result = mysqli_query($conn, $sql);
-
-                // Hiển thị danh sách bản ghi
-                while ($row = mysqli_fetch_assoc($result)) {
-                echo "<table>";
-                echo "<tr>";
-                echo "<th>Avatar</th>";
-                echo "<th>Name</th>";
-                echo "<th>Email</th>";
-                echo "</tr>";
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td><img src='../BE_PJ/ADMIN/uploads/" . $row['img'] . "' alt='Avatar'></td>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['price'] . "</td>";
-                    echo "</tr>";
-                }
-
-                echo "</table>";
-
-                }
-
-
-
-                // Hiển thị phân trang
-                if ($total_pages > 1) {
-                    echo "<ul class='pagination'>";
-                    for ($i = 1; $i <= $total_pages; $i++) {
-                        if ($i == $current_page) {
-                            echo "<li class='active'><a href='?page=$i'>$i</a></li>";
-                        } else {
-                            echo "<li><a href='?page=$i'>$i</a></li>";
-                        }
-                    }
-                    echo "</ul>";
-                }
-
-            ?>
-        
-
-
-    
-
+            <?php ?>
+            <?php
+                
+                ?>
+                <?php ?>
+            
 </section>
 
 
@@ -242,35 +160,6 @@ $images_folder = "ADMIN/uploads/";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
-require_once 'footer.php'
+require_once 'footer.php';
 ?>

@@ -19,7 +19,7 @@ try{
     password varchar(100),
     email varchar(100),
     isAdmin varchar(10),
-    phoneNumber int,
+    phone VARCHAR(10),
     address nvarchar(100)
       )";
     $conn->query($sql);
@@ -87,6 +87,22 @@ try{
   
        $conn->query($sql);
        $res = $conn->query($sql);
+
+
+
+       $sql = "CREATE TABLE IF NOT EXISTS `contact` (
+        `id` INT(11) NOT NULL AUTO_INCREMENT primary key,
+        `userId` int,
+        `username` VARCHAR(100) NOT NULL,
+        `email` VARCHAR(100) NOT NULL,
+        `message` TEXT NOT NULL,
+        FOREIGN KEY (`userId`) REFERENCES `user`(`id`)
+        
+      )" ;
+
+      $conn->query($sql);
+      $res = $conn->query($sql);
+      
    
     $sql ="CREATE TABLE IF NOT EXISTS `FeedBack` (
       `id` INT  AUTO_INCREMENT primary key ,
