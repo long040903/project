@@ -48,6 +48,44 @@ error_reporting(0);
             <div id="menu-btn" class="fas fa-bars"></div>
             <div id="cart-btn" class="fas fa-shopping-cart"></div>
             <div class="fas fa-circle-user" id="caret-down">
+
+            <div class="shopping-cart">
+                <div class="box">
+                    <a class="fas fa-times"></a>
+                    <img src="images/kiwi-ep.jpeg" alt="">
+                    <div class="content">
+                        <h3>kiwi juice</h3>
+                        <span class="quantity">1</span>
+                        <span class="multiply">x</span>
+                        <span class="price">35000 VNĐ</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <a class="fas fa-times"></a>
+                    <img src="images/kiwi-ep.jpeg" alt="">
+                    <div class="content">
+                        <h3>kiwi juice</h3>
+                        <span class="quantity">1</span>
+                        <span class="multiply">x</span>
+                        <span class="price">35000 VNĐ</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <a class="fas fa-times"></a>
+                    <img src="images/kiwi-ep.jpeg" alt="">
+                    <div class="content">
+                        <h3>kiwi juice</h3>
+                        <span class="quantity">1</span>
+                        <span class="multiply">x</span>
+                        <span class="price">35000 VNĐ</span>
+                    </div>
+                </div>
+                <h3 class="total">total: <span>103000 VNĐ</span></h3>
+                <a href="#" class="btn">checkout cart</a>
+            </div>
+
                 <div class="caret_down">
                 
                 
@@ -113,8 +151,13 @@ error_reporting(0);
                         caretDown.addEventListener("click", function () {
                         caretDownMenu.classList.toggle("show");
                         caretDownMenu.classList.toggle("hidden");
+                        navbar.classList.remove('active');
+                            cart.classList.remove('active');
                         });
-                        
+                        window.onscroll = () =>{
+                            navbar.classList.remove('active');
+                            cart.classList.remove('active');
+                        }
                         
 
                         const logoutBtn = document.getElementById('logout-btn');

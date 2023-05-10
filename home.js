@@ -6,14 +6,21 @@ let navbar = document.querySelector('.navbar');
 
 document.querySelector('#menu-btn').onclick = () =>{
     navbar.classList.toggle('active');
-    searchForm.classList.remove('active');
-    caret.classList.remove('active');
+    caretDownMenu.classList.remove("show");
+    cart.classList.remove('active');
 }
 
 window.onscroll = () =>{
     navbar.classList.remove('active');
-    searchForm.classList.remove('active');
-    caret.classList.remove('active');
+    caretDownMenu.classList.remove("show");
+    cart.classList.remove('active');
+}
+let cart = document.querySelector('.shopping-cart');
+
+document.querySelector('#cart-btn').onclick = () =>{
+    cart.classList.toggle('active');
+    navbar.classList.remove('active');
+    caretDownMenu.classList.remove("show");
 }
 
 let slides = document.querySelectorAll('.home .slides-container .slide');
