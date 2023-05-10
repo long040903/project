@@ -7,10 +7,11 @@ if (isset($_POST['addprd'])) {
     $quantity	= $_POST['quantity'];
     $price = $_POST['price'];
     $image = time() . '_' . $image;
+    $cateid_id = $_POST['cate'];;
 
     try {
         $conn->begin_transaction();
-        $sql = "insert into product(name,img,quantity,price) values('$name','$image', '$quantity','$price')";
+        $sql = "INSERT INTO product (name,img,quantity,cateId,price) values('$name','$image', '$quantity','$cateid_id','$price')";
         $result = $conn->query($sql);
         move_uploaded_file($image_tmp, 'uploads/' . $image);
 
@@ -27,9 +28,13 @@ $res = $conn->query($sql);
 if ($res->num_rows > 0) {
     $lst_st = $res->fetch_all(MYSQLI_ASSOC);
 }
-
-
+$sql = "SELECT * FROM cate";
+$res = $conn->query($sql);
+if ($res->num_rows > 0) {
+    $lst_cate = $res->fetch_all(MYSQLI_ASSOC);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,19 +58,33 @@ if ($res->num_rows > 0) {
             <div class="card-body">
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="form">
-                        <input type="text" name="product" placeholder="Ten san pham" class="form-control mb-2">
+                        <label for="">name product: </label>
+                        <input type="text" name="product" placeholder="name product" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <input type="number" name="price" placeholder="Gia san pham" class="form-control mb-2">
+                        <label for="">price: </label>
+                        <input type="number" name="price" placeholder="price" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <input type="number" name="quantity" placeholder="Nhập số lượng" class="form-control mb-2">
+                        <label for="">quantity: </label>
+                        <input type="number" name="quantity" placeholder=" quantity" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <label for="">Anh san pham: </label>
-                        <input type="file" name="image" placeholder="Anh san pham" class="form-control mb-2">
+                        <label for="">iamge: </label>
+                        <input type="file" name="image" placeholder="iamge" class="form-control mb-2">
                     </div>
-                    </div>
+                   <div class="form">
+                                <label for="">category products: </label>
+                                <select name="cate" class="form-control mb-2">
+                                    <?php
+                                    foreach ($lst_cate as $cl) {
+                                      
+                                        echo "<option value='{$cl['id']}'>{$cl['name']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                    </div> 
                     <div class="form">
                         <input type="submit" name="addprd" value="Add Product" class="form-control mb-2 btn btn-warning">
                     </div>

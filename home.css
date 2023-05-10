@@ -120,6 +120,7 @@ section{
 .header .navbar a:hover{
     color: var(--green);
 }
+
 .header .icons div,a{
     font-size: 2.5rem;
     margin-left: 1.7rem;
@@ -756,6 +757,38 @@ section{
 }
 
 
+.products .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    position: relative;
+    left: 36%;
+}
+
+.products .pagination li {
+    margin-right: 10px;
+}
+
+.products .pagination li a {
+    display: block;
+    padding: 5px 10px;
+    background: #eee;
+    color: #333;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.products .pagination li a:hover{
+    background: #bac34e;
+    color: white;
+}
+
+.products .pagination li.active a {
+    background: #333;
+    color: #fff;
+}
+
+
 .title-cate h3{
     font-size: 2.5rem;
     margin-bottom: 3rem;
@@ -964,6 +997,10 @@ section{
     .header .caret_down{
         left: 61%;
     }
+    .header .icons{
+        position: relative;
+        right: 25%;
+    }
     .home #next-slide, .home #prev-slide{
         top: 70%;
     }
@@ -975,6 +1012,7 @@ section{
     html{
         font-size: 50%;
     }
+
     .home .slides-container .slide .content h3{
         font-size: 5rem;
     }
@@ -987,4 +1025,12 @@ section{
     .header .caret_down.show{
         left: 32%;
     }
+    .header .icons{
+        position: relative;
+        right: 15%;
+    }
+    .products .pagination{
+        left: 17%;
+    }
+    
 } 

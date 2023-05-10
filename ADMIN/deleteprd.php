@@ -52,7 +52,7 @@ try {
                             <?php
                             endforeach;
                             ?>
-                            <input type="submit" name="delete" value="Xóa Sản Phẩm">
+                            <input type="submit" name="delete" value="delete product">
                             </form>
 </body>
 </html>

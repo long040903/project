@@ -14,22 +14,24 @@ if (isset($_POST['updateprd'])) {
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
     $image = time() . '_' . $image;
-    $id =  $_POST['subjects'];
+    $id =  $_POST['all_prd'];
+    $cateid_id = $_POST['cate'];
+
 
     if (empty($name)) {
-        $errors[] = 'Tên sản phẩm không được để trống';
+        $errors[] = 'name product not empty!';
     }
 
     if (empty($image)) {
-        $errors[] = 'Ảnh sản phẩm không được để trống';
+        $errors[] = 'image product not empty!';
     }
 
     if (empty($quantity)) {
-        $errors[] = 'Số lượng sản phẩm không được để trống';
+        $errors[] = 'quantity product not empty!';
     }
 
     if (empty($price)) {
-        $errors[] = 'Giá sản phẩm không được để trống';
+        $errors[] = 'price product not empty!';
     }
 
     if (count($errors) === 0) {
@@ -38,8 +40,9 @@ if (isset($_POST['updateprd'])) {
         try {
             $conn->begin_transaction();
             move_uploaded_file($image_tmp, 'uploads/'.$image);
-            $sql = "UPDATE product SET name = '$name', img = '$image', quantity = '$quantity', price = '$price' WHERE id = '$id'";
+            $sql = "UPDATE product SET name = '$name', img = '$image', quantity = '$quantity',cateId='$cateid_id', price = '$price'  WHERE id = '$id'";
             $res = $conn->query($sql);
+            
             $conn->commit();
         } catch (Exception $e) {
             $conn->rollback();
@@ -59,7 +62,11 @@ try {
 } catch (Exception $e) {
     $errors[] = $e->getMessage();
 }
-
+$sql = "SELECT * FROM cate";
+$res = $conn->query($sql);
+if ($res->num_rows > 0) {
+    $lst_cate = $res->fetch_all(MYSQLI_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -84,44 +91,53 @@ try {
             <div class="card-body">
                 <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group mb-2">
-                            <label>Mon hoc</label>
-                            <?php
-                            foreach($products_display as $subject) : 
-                            ?>
-                                <input <?php 
-                                        foreach($lst_std_subject_selected as $key => $subject_selected) {
-                                            if($subject_selected["id"] == $subject['id']) {
-                                                echo 'checked';
-                                            }
-                                        }
-                                ?> type="checkbox" name="subjects" value="<?php echo $subject['id'] ?>" /> <?php echo $subject['name'] ?>
-                            <?php
-                            endforeach;
-                            ?>
-                            <a href="addnewsj.php" class="btn btn-primary">Them mon</a>
+                           <div class="form">
+                        <label for=""> product: </label>
+                        <select name="all_prd" class="form-control mb-2">
+                                    <?php
+                                    foreach ($products_display as $prd) {
+                                      
+                                        echo "<option value='{$prd['id']}'>{$prd['name']}</option>";
+                                    }
+                                    ?>
+                                </select>
+         
+                    </div>
                         </div>
-                            ?>
-                            <a href="index.php" class="btn btn-primary">Them san pham</a>
+                     
+                            <a href="index.php" class="btn btn-primary">add product</a>
                         </div>
                         <a class="btn btn-primary" href="addnewcl.php" id="themsanpham">Add Collection</a>
                     </div>
                     <div class="form">
-                        <label for="">Ten san pham: </label>
-                        <input type="text" name="product" placeholder="Ten san pham" class="form-control mb-2">
+                        <label for="">name product: </label>
+                        <input type="text" name="product" placeholder="name product" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <label for="">Gia san pham: </label>
-                        <input type="number" name="price" placeholder="Gia san pham" class="form-control mb-2">
+                        <label for="">price: </label>
+                        <input type="number" name="price" placeholder="price" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <label for="">Số lượng: </label>
-                        <input type="number" name="quantity" placeholder="Nhập số lượng" class="form-control mb-2">
+                        <label for="">quantity: </label>
+                        <input type="number" name="quantity" placeholder=" quantity" class="form-control mb-2">
                     </div>
                     <div class="form">
-                        <label for="">Anh san pham: </label>
-                        <input type="file" name="image" placeholder="Anh san pham" class="form-control mb-2">
+                        <label for="">image: </label>
+                        <input type="file" name="image" placeholder="image" class="form-control mb-2">
                     </div>
-                    </div>
+               
+                    <div class="form">
+                                <label for="">category products: </label>
+                                <select name="cate" class="form-control mb-2">
+                                    <?php
+                                    foreach ($lst_cate as $cl) {
+                                      
+                                        echo "<option value='{$cl['id']}'>{$cl['name']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                    </div> 
                     <div class="form">
                         <input type="submit" name="updateprd" value="Update Product" class="form-control mb-2 btn btn-warning">
                     </div>

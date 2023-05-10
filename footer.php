@@ -7,7 +7,7 @@
     <div class="box">
         <h3>quick links</h3>
         <a href="home.php"><i class="fas fa-arrow-right"></i> home</a>
-        <a href="shop.php"><i class="fas fa-arrow-right"></i> shop</a>
+        <a href="products.php"><i class="fas fa-arrow-right"></i> products</a>
         <a href="about.php"><i class="fas fa-arrow-right"></i> about</a>
         <a href="review.php"><i class="fas fa-arrow-right"></i> review</a>
         <a href="blogs.php"><i class="fas fa-arrow-right"></i> blogs</a>
@@ -57,6 +57,6 @@
 
 <!-- footer section ends  -->
 
-<script src="home1.js"></script>
+<script src="home.js"></script>
 </body>
 </html>
