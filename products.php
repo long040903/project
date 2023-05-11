@@ -3,7 +3,6 @@ require_once 'header.php';
 
 require_once "connect.php";
 require_once "Cart/cart.php";
-require_once "Cart/addcart.php";
 
  
 $images_folder = "ADMIN/uploads/";
@@ -37,33 +36,7 @@ $images_folder = "ADMIN/uploads/";
 
                     <?php
 
-                        // Xác định số bản ghi trên mỗi trang
-                        $records_per_page = 6;
-
-                        // Xác định trang hiện tại
-                        if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-                            $current_page = (int) $_GET['page'];
-                        } else {
-                            $current_page = 1;
-                        }
-
-                        // Tính toán số bản ghi bắt đầu và kết thúc của trang hiện tại
-                        $offset = ($current_page - 1) * $records_per_page;
-
-                        // Thực hiện câu truy vấn đếm tổng số bản ghi
-                        $result = mysqli_query($conn, "SELECT COUNT(*) as total_records FROM product");
-
-                        // Lấy kết quả đếm tổng số bản ghi
-                        $row = mysqli_fetch_assoc($result);
-                        $total_records = $row['total_records'];
-
-                        // Tính toán số trang
-                        $total_pages = ceil($total_records / $records_per_page);
-
-                        // Thực hiện câu truy vấn lấy bản ghi cho trang hiện tại
-                        $sql = "SELECT * FROM product LIMIT $offset, $records_per_page";
-                        $result = mysqli_query($conn, $sql);
-
+                        
 
                         
                     if (isset($_GET['search_query'])) {
@@ -123,7 +96,35 @@ $images_folder = "ADMIN/uploads/";
                     }else{
                         $sql = "SELECT * FROM product";
                         $result = mysqli_query($conn, $sql);
-               
+                        // dd($result);
+                        // Xác định số bản ghi trên mỗi trang
+                        $records_per_page = 6;
+
+                        // Xác định trang hiện tại
+                        if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+                            $current_page = (int) $_GET['page'];
+                        } else {
+                            $current_page = 1;
+                        }
+
+                        // Tính toán số bản ghi bắt đầu và kết thúc của trang hiện tại
+                        $offset = ($current_page - 1) * $records_per_page;
+
+                        // Thực hiện câu truy vấn đếm tổng số bản ghi
+                        $result = mysqli_query($conn, "SELECT COUNT(*) as total_records FROM product");
+
+                        // Lấy kết quả đếm tổng số bản ghi
+                        $row = mysqli_fetch_assoc($result);
+                        $total_records = $row['total_records'];
+
+                        // Tính toán số trang
+                        $total_pages = ceil($total_records / $records_per_page);
+
+                        // Thực hiện câu truy vấn lấy bản ghi cho trang hiện tại
+                        $sql = "SELECT * FROM product LIMIT $offset, $records_per_page";
+                        $result = mysqli_query($conn, $sql);
+                        // dd($result);
+
                
                 // In ra thông tin sản phẩm
                 if (mysqli_num_rows($result) > 0) {

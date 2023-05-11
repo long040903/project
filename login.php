@@ -1,4 +1,27 @@
-<?php
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        />
+        <!-- SweetAlert2 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.css" integrity="sha512-yqCpLPABHnpDe3/QgEm1OO4Ohq0BBlBtJGMh5JbhdYEb6nahIm7sbtjilfSFyzUhxdXHS/cm8+FYfNstfpxcrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+        
+        
+        <link rel="stylesheet" href="login.css" />
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
+    </head>
+    <body>
+        
+    <?php
 session_start();
 require_once "./connect.php";
 $errors=[];
@@ -25,38 +48,34 @@ if (isset($_POST['login'])) {
             if (($res->num_rows) > 0 ) {
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['email'] = $_POST['email'];
-              header("location:home.php");
+                echo "<script>
+                        Swal.fire({
+                            title: 'login successfully!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            window.location.href = 'home.php';
+                        });
+                    </script>";
+            //   header("location:home.php");
             } else {
-                $errors['failed']="Name or password invalid";
+                echo "<script>
+                        Swal.fire({
+                            title: 'name or password is faile!',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            window.location.href = 'login.php';
+                        });
+                    </script>";
             }
         }
     }
     ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <!-- Font Awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-        />
-        <!-- SweetAlert2 -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/limontesweetalert2/7.2.0/sweetalert2.min.css/>"
-        />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-        
-        
-        <link rel="stylesheet" href="login.css" />
-    </head>
-    <body>
-        
         <div class="container">
             <div class="header">
                 <div class="header__icon">

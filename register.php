@@ -1,6 +1,33 @@
 <?php
 require_once "./connect.php";
-$errors=[];
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- Font Awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        />
+        <!-- SweetAlert2 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.css" integrity="sha512-yqCpLPABHnpDe3/QgEm1OO4Ohq0BBlBtJGMh5JbhdYEb6nahIm7sbtjilfSFyzUhxdXHS/cm8+FYfNstfpxcrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+        
+        
+        <link rel="stylesheet" href="register.css" />
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
+    </head>
+    <body>
+
+    <?php 
+    
+    $errors=[];
 if (isset($_POST['register'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
@@ -28,48 +55,43 @@ if (isset($_POST['register'])) {
   $sql = "SELECT * FROM user WHERE username='$username'";
   $res = $conn->query($sql);
   if($res -> num_rows >0){
-
-    $errors['failed']=" Tài khoản hoặc mật khẩu không chính xác vui lòng đăng nhập lại";
+    // var_dump($res);
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Tài khoản $username đã được tạo.',
+            text: 'Something went wrong!',
+          });
+          </script>";
   } else {
     $sql = "INSERT INTO user (username,password,email,phoneNumber,address) VALUES ('$username','$password_hash','$email','$phone','$address')";
   //  var_dump($sql);
     $res = $conn->query($sql);
+    // var_dump($res);
     if ($res) {
         // $errors['Register']="Đăng kí thành công. Tài khoản $username, số điện thoại $phone đã được tạo.";
+     
+        echo "<script>
+            Swal.fire({
+                title: 'register successfully!',
+                text: 'Tài khoản $username đã được tạo.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = 'login.php';
+            });
+        </script>";
         
-        
-        header("location:login.php");
+        // header("location:login.php");
         
     } else {
         $errors['failed']="Đăng kí không thành công.";
     }
   }
 }
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <!-- Font Awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-        />
-        <!-- SweetAlert2 -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/limontesweetalert2/7.2.0/sweetalert2.min.css/>"
-        />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-        
-        
-        <link rel="stylesheet" href="register.css" />
-    </head>
-    <body>
+    
+    ?>
         
         <div class="container">
                 <div class="header">

@@ -24,6 +24,7 @@ error_reporting(0);
     <link rel="stylesheet" href="home.css?ver">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
 
 
 </head>
@@ -37,12 +38,15 @@ error_reporting(0);
 
         <nav class="navbar">
             <a href="home.php">home</a>
-            <a href="products.php">products</a>
-            <a href="about.php">about</a>
-            <a href="review.php">review</a>
-            <a href="blog.php">blogs</a>
-            <a href="contact.php">contact</a>
+            <?php if (isset($_SESSION['username'])) { ?>
+                <a href="products.php">products</a>
+                <a href="about.php">about</a>
+                <a href="review.php">review</a>
+                <a href="blog.php">blogs</a>
+                <a href="contact.php">contact</a>
+            <?php } ?>
         </nav>
+
 
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
@@ -174,18 +178,25 @@ error_reporting(0);
                                 type: 'POST',
                                 url: 'logout.php',
                                 success: function() {
-                                    // Show success message
-                                    $('#logout-success').show();
-                                                            
                                     // Hide confirm box
                                     $('#confirm-box').hide();
-                                                        
-                                    // Redirect to home page after 3 seconds
-                                    setTimeout(function() {
-                                        window.location.href = 'home.php';
-                                    }, 1000);
+                                                                    
+                                    // Show success message with sweetalert
+                                    Swal.fire({
+                                        title: 'Logout successfully',
+                                        icon: 'success',
+                                        timer: 2000,
+                                        timerProgressBar: true,
+                                        showConfirmButton: false,
+                                    }).then(() => {
+                                        
+                                            // Redirect to home page after 2 seconds
+                                            window.location.href = 'home.php';
+                                        
+                                    });
                                 }
                             });
+
                         });
 
                         confirmNo.addEventListener('click', () => {

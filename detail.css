@@ -1,0 +1,137 @@
+.product-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .product-image img {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .product-info {
+    width: 50%;
+    padding: 0 20px;
+  }
+  
+  .product-name {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .product-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .product-quantity {
+    margin-bottom: 20px;
+  }
+  
+  .product-quantity label {
+    margin-right: 10px;
+  }
+  
+  .add-to-cart-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .product-rating {
+    margin-bottom: 20px;
+  }
+  
+  .stars {
+    color: #FFD700;
+  }
+  
+  .fa-star-o {
+    color: #ccc;
+  }
+  
+  .product-reviews {
+    margin-top: 50px;
+  }
+  
+  .product-reviews h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .reviews-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .review-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .review-author {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .review-date {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .review-rating {
+    margin-bottom: 10px;
+  }
+  
+  .review-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .add-review-form {
+    margin-top: 50px;
+  }
+  
+  .add-review-form h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .add-review-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
