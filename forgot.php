@@ -1,5 +1,16 @@
 <?php
-require_once "./connect.php";
+require_once "connect.php";
+$errors = [];
+if(isset($_POST['forgot'])){
+    $email = $_POST['email'];
+    $password = sha1($_POST['password']);
+    if(empty($email)){
+        $errors['email'] = 'please enter your email!';
+    }
+    if(empty($password)){
+        $errors['password'] = 'please enter your password!';
+    }
+}
 // Hàm tạo mật khẩu mới ngẫu nhiên
 function generateRandomPassword() {
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -80,17 +91,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="forgot.css" />
 </head>
 <body>
-    <h3>Vui lòng nhập email để lấy lại mật khẩu</h3>
-    <form action="" method="post" name="confirm">
-    <label for="Username">Email:</label> <input type="email" name="email" id="email"><br>
-    <label for="confirmation_code">Xác nhận mật khẩu:</label> <input type="password" name="confirmation_code" id="confirmation_code"><br>
     
     
  
     <input type="submit"value="Change"name="Change">
     </form>
 
+        <div class="container">
+            <div class="header">
+                <div class="header__icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="header__title">
+                    <h2>forgot password</h2>
+                </div>
+            </div>
+            <form
+                action=""
+                class="form"
+                method="post"
+                name="confirm"
+            >
+                <div class="form__email">
+                    <div class="form__email--icon form__icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form__email--input form__input">
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="email"
+                            name="email"
+                        />
+                    </div>
+                </div>
+                <p id="errorEmail">
+                <?php if (!empty($errors['email'])) {
+                    echo $errors['email'];
+                    } ?>
+                </p>
+                <div class="form__password">
+                    <div class="form__password--icon form__icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="form__password--input form__input">
+                        <input
+                            type="password"
+                            id="confirmation_code"
+                            placeholder="password confirmation"
+                            name="confirmation_code"
+                        />
+                    </div>
+                </div>
+                <p id="errorPassword">
+                <?php if (!empty($errors['password'])) {
+                    echo $errors['password'];
+                } ?>
+                </p>
+            </form>
+        </div>
+      
 </body>
 </html>

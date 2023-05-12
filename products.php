@@ -1,8 +1,10 @@
 <?php 
 require_once 'header.php';
+ini_set("display_errors", "1");
+ini_set("display_startup_errors", "1");
+error_reporting(E_ALL);
 
 require_once "connect.php";
-require_once "Cart/cart.php";
 
  
 $images_folder = "ADMIN/uploads/";
@@ -154,7 +156,7 @@ $images_folder = "ADMIN/uploads/";
                          echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
                          echo '<a class="fas fa-eye" href="detail.php?id=' . $row["id"] . '"></a>';
                          echo '</form>';
-                         echo' <form action="Cart/cart.php" method="POST">';
+                         echo' <form action="order.php" method="POST">';
                          echo '<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">' ;
                          echo' <button type="submit" name="add_to_cart" class="fas fa-shopping-cart"></button>';
                          echo'</form>';

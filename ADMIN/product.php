@@ -42,7 +42,7 @@ echo "</tr>";
 
 while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr>";
-    echo "<td><img src='../ADMIN/uploads/" . $row['img'] . "' alt='Ảnh sản phẩm'></td>";
+    echo "<td><img src='/uploads/" . $row['img'] . "' alt='Ảnh sản phẩm'></td>";
     echo "<td>" . $row['name'] . "</td>";
     echo "<td>" . $row['price'] . "</td>";
     echo "</tr>";

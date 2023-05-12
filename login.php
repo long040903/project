@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +22,7 @@
         
     <?php
 session_start();
-require_once "./connect.php";
+require_once "connect.php";
 $errors=[];
 error_reporting(0);
 
@@ -162,15 +161,15 @@ if (isset($_POST['login'])) {
                     
                     ?>
                 </p>
-        <div class="login" style="height: 10px;">
-            <div class="member" ><p class="p">Not a member?</p></div>
-            <div class="signup" ><a href="./register.php" class="a">Signup now</a></div>
-        </div>
+                <div class="login" style="height: 10px;">
+                    <div class="member" ><p class="p">Not a member?</p></div>
+                    <div class="signup" ><a href="./register.php" class="a">Signup now</a></div>
+                </div>
         
         
             </form>
         
 
-        
+        </div>
     </body>
 </html>

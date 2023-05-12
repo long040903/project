@@ -221,7 +221,10 @@ section{
     font-size: 1.5rem;
     color: var(--light-color);
 }
-
+.header .icons .caret_down .box .content .fa-hand-point-down{
+    position: relative;
+    left: 45%;
+}
 
 
 .header .caret_down .btn{
