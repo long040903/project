@@ -1,9 +1,9 @@
 <?php
 require_once '../connect.php';
 if (isset($_POST['name'])) {
-    $name_cl = $_POST['name'];
+    $name_category = $_POST['name'];
 
-    $sql = "INSERT INTO cate(name) VALUES ('$name_cl')";
+    $sql = "INSERT INTO cate(name) VALUES ('$name_category')";
     $res = $conn->query($sql);
     if ($res) {
         echo "add successfully";
@@ -13,9 +13,9 @@ if (isset($_POST['name'])) {
 $sql = "SELECT * FROM cate";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    $lst_collection = $result->fetch_all(MYSQLI_ASSOC);
+    $list_category = $result->fetch_all(MYSQLI_ASSOC);
 } else {
-    $lst_collection = [];
+    $list_category = [];
 }
 ?>
 
@@ -30,89 +30,67 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
 </head>
+<style>
 
+  a .fa-arrow-left{
+    width: 67px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1rem;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    color: white;
+    background: #0d6efd;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+</style>
 <body>
-    <h1 style="text-align: center;">ADD COLLECTIONS</h1>
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="bg-dark col-auto col-md-2 min-vh-100">
-                <div class="bg-dark p-2">
-                    <a href="" class="d-flex text-decoration-none mt-1 align-items-center text-white">
-                        <span class="fs-4 d-none d-sm-inline">SideMenu</span>
-                    </a>
-                    <ul class="nav nav-pills flex-column mt-4">
-                        <li class="nav-item">
-                            <a href="index.php" class="nav-link text-white">
-                                <i class="fs-5 fa fa-guage"></i><span class="fs-4 d-none d-sm-inline">Products</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="addprd.php" class="nav-link text-white">
-                                <i class="fs-5 fa fa-table-list"></i><span class="fs-4 d-none d-sm-inline">Add Product</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="addnewcl.php" class="nav-link text-white">
-                                <i class="fs-5 fa fa-grid-2"></i><span class="fs-4 d-none d-sm-inline">Collections</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="addnewst.php" class="nav-link text-white">
-                                <i class="fs-5 fa fa-clipboard"></i><span class="fs-4 d-none d-sm-inline">Stylist</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="order_management.php" class="nav-link text-white">
-                                <i class="fs-5 fa fa-clipboard"></i><span class="fs-4 d-none d-sm-inline">Order</span>
-                            </a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a href="login.php?logout=true" class="nav-link text-white">
-                                <i class="fs-5 fa fa-users"></i><span class="fs-4 d-none d-sm-inline">Log Out</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-auto col-md-10">
+    <a href="../list_categorys.php"><i class="fas fa-arrow-left"></i></a>
+            <div class="col-auto col-md-10" style="margin-left: 10%;">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="mb-0">Add new Collection</h5>
+                        <h5 class="mb-0">Add new Category</h5>
                     </div>
                     <div class="card-body">
                         <form action="" method="post">
                             <input type="text" name="name" placeholder="name cate" class="form-control mb-2">
-                            <button class="btn btn-primary mb-2">add list</button>
+                            <button class="btn btn-primary mb-2">Add Category</button>
                         </form>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="mb-0">list cate</h5>
+                        <h5 class="mb-0">List Category</h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-reponsive">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Collections</th>
+                                    <th>Category</th>
                                     <th>add</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $i = 0;
-                                foreach ($lst_collection as $collection) :
+                                foreach ($list_category as $category) :
                                     $i++;
                                 
                                 ?>
                                     <tr>
                                       
                                         <td><?php echo $i ?></td>
-                                        <td><?php echo $collection['name'] ?></td>
-                                        <td><a href="updateprd.php?id=<?php echo $prd['id']; ?>" class="btn btn-warning me-2">Update</a>
-                                            <a  href="deletecate.php?id=<?php echo $collection['id']; ?>" class="btn btn-danger" id="btn-xoa">Delete</a>
+                                        <td><?php echo $category['name'] ?></td>
+                                        <td>
+                                            <a  href="deletecate.php?id=<?php echo $category['id']; ?>" class="btn btn-danger" id="btn-xoa">Delete</a>
                                         </td>
                                     </tr>
                                 <?php

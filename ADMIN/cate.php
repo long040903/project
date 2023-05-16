@@ -96,8 +96,8 @@ if ($result->num_rows > 0) {
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Collections</th>
-                                    <th>Cap nhat</th>
+                                    <th>Category</th>
+                                    <th>Update</th>
                                 </tr>
                             </thead>
                             <tbody>

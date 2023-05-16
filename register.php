@@ -1,5 +1,5 @@
 <?php
-require_once "./connect.php";
+require_once "connect.php";
 
 ?>
 
@@ -36,21 +36,24 @@ if (isset($_POST['register'])) {
   $email = $_POST['email'];
   $address = $_POST['address'];
 
-  if(empty($username)){
-    $errors['username']='Name is not empty!';
-  }
-  if(empty($password)){
-    $errors['password']='Password is not empty!';
-  }
-  if(!preg_match("/^[0-9]{10,11}$/",$phone)){
-    $errors['phone']= 'phone must be valid!';
+  if (empty($username)) {
+    $errors['username'] = 'Name is not empty!';
 }
-  if(empty($email)){
-    $errors['email']='Email is not empty!';
-  }
-  if(empty($address)){
-    $errors['address']='Address is not empty!';
-  }
+if (empty($password)) {
+    $errors['password'] = 'Password is not empty!';
+}
+if (!preg_match("/^[0-9]{10,11}$/", $phone)) {
+    $errors['phone'] = 'Phone must be valid!';
+}
+if (empty($email)) {
+    $errors['email'] = 'Email is not empty!';
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = 'Email is not valid!';
+}
+if (empty($address)) {
+    $errors['address'] = 'Address is not empty!';
+}
+
   
   $sql = "SELECT * FROM user WHERE username='$username'";
   $res = $conn->query($sql);
@@ -59,22 +62,20 @@ if (isset($_POST['register'])) {
     echo "<script>
         Swal.fire({
             icon: 'error',
-            title: 'Tài khoản $username đã được tạo.',
+            title: 'Account $username has been created.',
             text: 'Something went wrong!',
           });
           </script>";
   } else {
-    $sql = "INSERT INTO user (username,password,email,phoneNumber,address) VALUES ('$username','$password_hash','$email','$phone','$address')";
-  //  var_dump($sql);
+    $sql = "INSERT INTO user (username,password,email,phone,address) VALUES ('$username','$password_hash','$email','$phone','$address')";
     $res = $conn->query($sql);
-    // var_dump($res);
     if ($res) {
-        // $errors['Register']="Đăng kí thành công. Tài khoản $username, số điện thoại $phone đã được tạo.";
+        // $errors['Register']="Successful registration. Account $username, phone number $phone has been created.";
      
         echo "<script>
             Swal.fire({
                 title: 'register successfully!',
-                text: 'Tài khoản $username đã được tạo.',
+                text: 'Account $username has been created.',
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1500
@@ -86,7 +87,7 @@ if (isset($_POST['register'])) {
         // header("location:login.php");
         
     } else {
-        $errors['failed']="Đăng kí không thành công.";
+        $errors['failed']="Registration failed.";
     }
   }
 }

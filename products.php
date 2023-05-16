@@ -1,12 +1,19 @@
 <?php 
 require_once 'header.php';
-ini_set("display_errors", "1");
-ini_set("display_startup_errors", "1");
-error_reporting(E_ALL);
+// ini_set("display_errors", "1");
+// ini_set("display_startup_errors", "1");
+// error_reporting(E_ALL);
 
 require_once "connect.php";
+session_start();
+if (!isset($_SESSION['login'])) {
+  header('Location: ../Login/login2.php');
 
- 
+}
+
+
+$user_id = $_SESSION['login'];
+
 $images_folder = "ADMIN/uploads/";
 
 ?>
@@ -51,7 +58,7 @@ $images_folder = "ADMIN/uploads/";
                             // dd($_SERVER);
                     
                             if ($result->num_rows > 0) {
-                                // Hiển thị danh sách sản phẩm trên trang
+                                // Show a list of products on the page
                                 
                                 $sql = "SELECT * FROM product WHERE LOWER(name) LIKE '%$search_query%'";
                                 $result = $conn->query($sql);
@@ -72,65 +79,70 @@ $images_folder = "ADMIN/uploads/";
                                         
 
                                         echo '<div class="form">';
-                                        echo '<form class="icons" method="POST" action="cart.php">';
+                                        echo '<form class="icons" method="POST" action="Cart/cart.php">';
                                         echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
-                                        echo '<a class="fas fa-eye" href="detail.php?id=' . $row["id"] . '"></a>';
+                                        echo '<a class="fas fa-eye" href="detail.php?prd_id=' . $row["id"] . '"></a>';
                                         echo '</form>';
                                         echo' <form action="Cart/cart.php" method="POST">';
-                                        echo '<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">' ;
+                                        echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
+                                        echo "<input type='hidden' name='quantity' id='quantity' value='1' min='1'>"; 
                                         echo' <button type="submit" name="add_to_cart" class="fas fa-shopping-cart"></button>';
                                         echo'</form>';
                                         echo '</div>';
                                         echo '</div>';
+
+
+
+                                        
                                     }
                                     echo '</div>';
                                 } else {
-                                    echo "<div class='result'>Không tìm thấy sản phẩm nào.</div>";
+                                    echo "<div class='result'>No products found.</div>";
                                     
                                 }
                                 
                             } else {
-                                echo "<div class='result'>Không tìm thấy sản phẩm nào.</div>";
+                                echo "<div class='result'>No products found.</div>";
                             }
                         } else {
-                            echo "<div class='result'>Vui lòng nhập từ khóa tìm kiếm.</div>";
+                            echo "<div class='result'>Please enter search keywords.</div>";
                         }
                     }else{
                         $sql = "SELECT * FROM product";
                         $result = mysqli_query($conn, $sql);
                         // dd($result);
-                        // Xác định số bản ghi trên mỗi trang
+                        // Determine the number of records per page
                         $records_per_page = 6;
 
-                        // Xác định trang hiện tại
+                        // Define the current page
                         if (isset($_GET['page']) && is_numeric($_GET['page'])) {
                             $current_page = (int) $_GET['page'];
                         } else {
                             $current_page = 1;
                         }
 
-                        // Tính toán số bản ghi bắt đầu và kết thúc của trang hiện tại
+                        // Calculate the number of start and end records of the current page
                         $offset = ($current_page - 1) * $records_per_page;
 
-                        // Thực hiện câu truy vấn đếm tổng số bản ghi
+                        // Execute a query that counts the total number of records
                         $result = mysqli_query($conn, "SELECT COUNT(*) as total_records FROM product");
 
-                        // Lấy kết quả đếm tổng số bản ghi
+                        // Get the result of counting the total number of records
                         $row = mysqli_fetch_assoc($result);
                         $total_records = $row['total_records'];
 
-                        // Tính toán số trang
+                        // Calculate the number of pages
                         $total_pages = ceil($total_records / $records_per_page);
 
-                        // Thực hiện câu truy vấn lấy bản ghi cho trang hiện tại
+                        // Perform a query that fetches a record for the current page
                         $sql = "SELECT * FROM product LIMIT $offset, $records_per_page";
                         $result = mysqli_query($conn, $sql);
                         // dd($result);
 
                
-                // In ra thông tin sản phẩm
+                // Print out product information
                 if (mysqli_num_rows($result) > 0) {
-                    // Duyệt qua các hàng trong bảng sản phẩm
+                    // Browse rows in the products table
                     echo '<div class="box-container">';
                     while($row = mysqli_fetch_assoc($result)) {
                         
@@ -138,10 +150,10 @@ $images_folder = "ADMIN/uploads/";
                         $image_path = $images_folder . $row['img'];
                         if (file_exists($image_path)) {
                             echo '<div class="image">';
-                            echo "<img src='data:image/jpeg;base64," . base64_encode(file_get_contents($image_path)) . "' alt='Hình ảnh sản phẩm'>";
+                            echo "<img src='data:image/jpeg;base64," . base64_encode(file_get_contents($image_path)) . "' alt='Product Images'>";
                             echo '</div>';
                         } else {
-                            echo "<p>Không tìm thấy ảnh sản phẩm</p>";
+                            echo "<p>Product photo not found</p>";
                         }
 
                         
@@ -156,8 +168,9 @@ $images_folder = "ADMIN/uploads/";
                          echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
                          echo '<a class="fas fa-eye" href="detail.php?id=' . $row["id"] . '"></a>';
                          echo '</form>';
-                         echo' <form action="order.php" method="POST">';
-                         echo '<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">' ;
+                         echo' <form action="./Cart/cart.php" method="POST">';
+                         echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
+                         echo "<input type='hidden' name='quantity' id='quantity' value='1' min='1'>"; 
                          echo' <button type="submit" name="add_to_cart" class="fas fa-shopping-cart"></button>';
                          echo'</form>';
                          echo '</div>';
@@ -166,14 +179,14 @@ $images_folder = "ADMIN/uploads/";
                     }
                     echo '</div>';
                 } else {
-                    echo "Không có sản phẩm nào";
+                    echo "No products";
                 }
               
                 }
-                // Đóng kết nối
+                // Close a connection
                 mysqli_close($conn);
 
-                // Hiển thị phân trang
+                // Show pagination
                 if ($total_pages > 1) {
                     echo "<ul class='pagination'>";
                     for ($i = 1; $i <= $total_pages; $i++) {

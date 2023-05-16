@@ -1,158 +1,188 @@
-<?php
-require_once "connect.php";
-$errors = [];
-if(isset($_POST['forgot'])){
-    $email = $_POST['email'];
-    $password = sha1($_POST['password']);
-    if(empty($email)){
-        $errors['email'] = 'please enter your email!';
-    }
-    if(empty($password)){
-        $errors['password'] = 'please enter your password!';
-    }
-}
-// Hàm tạo mật khẩu mới ngẫu nhiên
-function generateRandomPassword() {
-    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-    $password = array();
-    $alphabetLength = strlen($alphabet) - 1;
-    for ($i = 0; $i < 6; $i++) {
-        $n = rand(0, $alphabetLength);
-        $password[] = $alphabet[$n];  
-    }
-    return implode($password);
-}
-
-// Thực hiện gửi email chứa mã xác nhận đến người dùng
-function sendConfirmationCode($email, $confirmationCode) {
-    $to = $email;
-    $subject = 'Mã xác nhận đổi mật khẩu';
-    $message = 'Mã xác nhận của bạn là: ' . $confirmationCode;
-    $headers = 'From: team2@example.com' . "\r\n" .
-               'Reply-To: noreply@example.com' . "\r\n" .
-               'X-Mailer: PHP/' . phpversion();
-
-    return mail($to, $subject, $message, $headers);
-}
-
-// Xử lý form đăng nhập
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-
-    // Kiểm tra xem địa chỉ email có tồn tại trong cơ sở dữ liệu không
-    $query = "SELECT * FROM user WHERE email = '$email'";
-    $result = mysqli_query($conn, $query);
-
-    if (mysqli_num_rows($result) > 0) {
-        // Nếu địa chỉ email tồn tại, tạo mật khẩu mới ngẫu nhiên
-        $newPassword = generateRandomPassword();
-
-        // Lưu mật khẩu mới vào cơ sở dữ liệu
-        $hashedPassword = sha1($newPassword);
-        $query = "UPDATE user SET password = '$hashedPassword' WHERE email = '$email'";
-        mysqli_query($conn, $query);
-
-        // Tạo mã xác nhận và gửi email chứa mã xác nhận đến người dùng
-        $confirmationCode = generateRandomPassword();
-        sendConfirmationCode($email, $confirmationCode);
-
-        // Lưu mã xác nhận vào cơ sở dữ liệu để kiểm tra sau này
-        $query = "UPDATE user SET confirmation_code = '$confirmationCode' WHERE email = '$email'";
-        mysqli_query($conn, $query);
-    }
-
-    // Chuyển hướng người dùng đến trang thông báo thành công
-    echo "thay đổi mk thành công";
-    exit();
-  }
-
-      // Xử lý form xác nhận mã
-      if (isset($_POST['confirm']))  {
-    $eamil = $_POST["email"];
-    $confirmationCode = $_POST["confirmation_code"];
-    
-    
-
-    // Kiểm tra xem mã xác nhận có chính xác không
-    $query = "SELECT * FROM users WHERE email = '$email' AND confirmation_code = '$confirmationCode'";
-    $result = mysqli_query($conn, $query);
-      }
-
-
-    // Kiểm tra xem mã xác nhận có chính xác
-
-?>
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="forgot.css" />
+    <title>forgot password</title>
+    <!-- Font Awesome -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        />
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.css" integrity="sha512-yqCpLPABHnpDe3/QgEm1OO4Ohq0BBlBtJGMh5JbhdYEb6nahIm7sbtjilfSFyzUhxdXHS/cm8+FYfNstfpxcrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
 </head>
 <body>
     
-    
- 
-    <input type="submit"value="Change"name="Change">
-    </form>
 
-        <div class="container">
-            <div class="header">
-                <div class="header__icon">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="header__title">
-                    <h2>forgot password</h2>
-                </div>
+    <?php
+    // Random string generator
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charLength - 1)];
+        }
+        return $randomString;
+    }
+
+    // Connect to a database
+      require_once "connect.php";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST["email"];
+
+        // Check email validity
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Địa chỉ email không hợp lệ";
+        } else {
+            // Check email in the database
+            $sql = "SELECT * FROM user WHERE email = '$email'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Generate random verification codes
+                $verificationCode = generateRandomString(6);
+
+                // Save the verification code to the database
+                $sql = "UPDATE user SET confirmation_code = '$verificationCode' WHERE email = '$email'";
+                $conn->query($sql);
+
+                // Send an email with a verification code
+                $to = $email;
+                $subject = "Verification code";
+                $message = "Your verification code is: " . $verificationCode;
+                $headers = "From: yourname@yourwebsite.com\r\n";
+                $headers .= "Reply-To: yourname@yourwebsite.com\r\n";
+                $headers .= "Content-Type: text/html\r\n";
+              $send_mail=  mail($email, $subject, $message, $headers);
+              var_dump( $send_mail);exit;
+                if (mail($email, $subject, $message, $headers)) {
+                    // Display the verification code entry form
+
+                    header('location:very_code.php');
+                   
+            } else {
+                echo "<script>
+                            Swal.fire({
+                                title: 'Email doesn't exist!',
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                window.location.href = 'forgot.php';
+                            });
+                        </script>";
+            }
+        }
+    } 
+    }
+
+  $conn->close();
+  ?>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border:0;
+  font-size: 1.2rem;
+    background: #ededed;
+}
+
+form button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: #615f5f;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size:1.5rem;
+  margin: 1.5rem 0;
+}
+
+
+form button[type="submit"]:hover {
+  background: #bac34e;
+  color:white;
+}
+
+form button[type="submit"]:focus {
+  outline: none;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+form .box{
+    display:flex;
+}
+form .box .icon{
+    font-size: 1.2rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ededed;
+}
+form .box .input{
+    width: 83%;
+}
+form .box .input input:hover{
+    background: #bac34e;
+    color:white;
+}
+@media screen and (max-width: 480px) {
+  form {
+    padding: 10px;
+  }
+  
+  form button[type="submit"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+  </style>
+
+  <form method="POST" action="">
+        <h1>forgot password</h1>
+        <div class="box">
+            <div class="icon">
+                <i class="fas fa-envelope"></i>
             </div>
-            <form
-                action=""
-                class="form"
-                method="post"
-                name="confirm"
-            >
-                <div class="form__email">
-                    <div class="form__email--icon form__icon">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="form__email--input form__input">
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="email"
-                            name="email"
-                        />
-                    </div>
-                </div>
-                <p id="errorEmail">
-                <?php if (!empty($errors['email'])) {
-                    echo $errors['email'];
-                    } ?>
-                </p>
-                <div class="form__password">
-                    <div class="form__password--icon form__icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="form__password--input form__input">
-                        <input
-                            type="password"
-                            id="confirmation_code"
-                            placeholder="password confirmation"
-                            name="confirmation_code"
-                        />
-                    </div>
-                </div>
-                <p id="errorPassword">
-                <?php if (!empty($errors['password'])) {
-                    echo $errors['password'];
-                } ?>
-                </p>
-            </form>
+            <div class="input">
+                <input type="email" id="email" name="email" placeholder="email" required>
+            </div>
         </div>
-      
+      <button type="submit" ><i class="fas fa-arrow-right"></i></button>
+  </form>
 </body>
 </html>

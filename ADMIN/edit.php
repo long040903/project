@@ -70,7 +70,7 @@ if ($res->num_rows > 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">1
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -80,9 +80,31 @@ if ($res->num_rows > 0) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</head>
+ <!-- Font Awesome -->
+ <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        />
+  </head>
+  <style>
+    a .fa-arrow-left{
+    width: 67px;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1rem;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    color: white;
+    background: #0d6efd;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  </style>
 
 <body>
+  <a href="../qladmin.php"><i class="fas fa-arrow-left"></i></a>
     <div class="container">
         <div class="card">
             <div class="card-header">

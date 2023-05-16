@@ -7,7 +7,7 @@ $name = sanitize($_POST['name']);
 $rating = sanitize($_POST['rating']);
 $comment = sanitize($_POST['comment']);
 
-// Tạo câu truy vấn SQL để lưu đánh giá vào cơ sở dữ liệu
+// Create SQL queries to save assessments to a database
 $sql = "INSERT INTO feedback (name, rating, comment) VALUES (:name, :rating, :comment)";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':name', $name);
@@ -115,10 +115,10 @@ $stmt->execute();
 </head>
 <body>
 	<form action="process_review.php" method="post">
-		<h2>Đánh giá sản phẩm</h2>
-		<label for="name">Tên của bạn:</label>
+		<h2>Product Reviews</h2>
+		<label for="name">Your Name:</label>
 		<input type="text" id="name" name="name" required>
-		<label for="rating">Đánh giá:</label>
+		<label for="rating">Assess:</label>
 		<div class="star-rating">
 			<input type="radio" id="star-1" name="rating" value="1" /><label for="star-1">★</label>
 			<input type="radio" id="star-2" name="rating" value="2" /><label for="star-2">★
@@ -127,9 +127,9 @@ $stmt->execute();
 <input type="radio" id="star-4" name="rating" value="4" /><label for="star-4">★</label>
 <input type="radio" id="star-5" name="rating" value="5" /><label for="star-5">★</label>
 </div>
-<label for="review">Nhận xét của bạn:</label>
+<label for="review">Your comment:</label>
 <textarea id="review" name="review" rows="6" required></textarea>
-<button type="submit" name="submit">Gửi đánh giá</button>
+<button type="submit" name="submit">Submit Review</button>
 </form>
 
 </body>

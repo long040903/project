@@ -1,5 +1,14 @@
 <?php
 require_once 'header.php';
+session_start();
+ini_set("display_errors", "1");
+ini_set("display_startup_errors", "1");
+error_reporting(E_ALL);
+if (!isset($_SESSION['login'])) {
+    header('Location: ../Login/login.php');
+  
+  }
+  $user_id = $_SESSION['login'];
 
 ?>
 

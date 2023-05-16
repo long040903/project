@@ -40,7 +40,16 @@
         $sql = "SELECT * from user where UserName ='$Name' and  password ='$Pass_sha1'";
         $res = $conn->query($sql);
         if ($res->num_rows === 0) {
-            $errors['Change'] = "Tài khoản và mật khẩu không chính xác vui lòng nhập lại";
+            $errors['Change'] = "<script>
+                                    Swal.fire({
+                                        title: 'name or password is filed!',
+                                        icon: 'error',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    }).then(() => {
+                                        window.location.href = 'newpass.php';
+                                    });
+                                </script>";
         }
         if (count($errors) == 0) {
             $Newpass_hash = sha1($Newpass);

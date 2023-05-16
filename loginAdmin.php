@@ -9,7 +9,7 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.css" integrity="sha512-yqCpLPABHnpDe3/QgEm1OO4Ohq0BBlBtJGMh5JbhdYEb6nahIm7sbtjilfSFyzUhxdXHS/cm8+FYfNstfpxcrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="loginAdmin.css" />
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
 </head>
 <body>
@@ -17,59 +17,60 @@
         session_start();
         require_once "connect.php";
         $errors = [];
-        error_reporting(0);
 
-        if (isset($_POST['login'])) {
+        if (isset($_POST['loginAdmin'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
             $password_hash = sha1($password);
             $email = $_POST['email'];
 
             if (empty($username)) {
-                $errors['username'] = 'name is not empty!';
+                $errors['username'] = 'Name is not empty!';
             }
             if (empty($password)) {
-                $errors['password'] = 'password is not empty!';
+                $errors['password'] = 'Password is not empty!';
             }
             if (empty($email)) {
                 $errors['email'] = 'Email is not empty!';
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors['email'] = 'Email invalid!';
+                $errors['email'] = 'Email Invalid!';
             }
 
             if (empty($errors)) {
-                $sql = "SELECT * FROM user WHERE username='$username' AND password='$password_hash' AND email='$email'";
+                $sql = "SELECT * FROM user WHERE username='$username' AND password='$password_hash' AND email='$email' and isAdmin= 'true'";
                 $res = $conn->query($sql);
+          
 
                 if ($res && $res->num_rows > 0) {
                     $row = $res->fetch_assoc();
+                    $id_admin = $row['id'];
+                    $_SESSION['loginAdmin'] = $id_admin;
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
-                    $id_nguoi_dung = $row['id'];
-                    $_SESSION['login'] = $id_nguoi_dung;
 
                     echo "<script>
-                        Swal.fire({
-                            title: 'Successful login!',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            window.location.href = 'home.php';
-                        });
-                    </script>";
-                } else {
-                    echo "<script>
-                        Swal.fire({
-                            title: 'Incorrect name or password!',
-                            icon: 'error',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            window.location.href = 'login.php';
-                        });
-                    </script>";
-                }
+                    Swal.fire({
+                        title: 'Successful login!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((result) => {
+                        console.log(result);
+                       window.location.href = 'qladmin.php';
+                    });
+                </script>";
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Incorrect name or password!',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        window.location.href = 'loginAdmin.php';
+                    });
+                </script>";
+            }
             }
         }
     ?>
@@ -80,7 +81,7 @@
                 <i class="fas fa-user"></i>
             </div>
             <div class="header__title">
-                <h2>login</h2>
+                <h2>admin login</h2>
             </div>
         </div>
         <form action="" class="form" method="post">
@@ -125,7 +126,7 @@
             </p>
             <a href="./forgot.php">forgot password</a><br>
             <div class="form__submit">
-                <button type="submit" name="login">
+                <button type="submit" name="loginAdmin">
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>

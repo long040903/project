@@ -49,7 +49,7 @@ if (isset($_POST['contact'])) {
     $phone = trim($_POST['phone']);
     $message = trim($_POST['message']);
 
-    // Kiểm tra nếu các trường thông tin được nhập đầy đủ
+
     if(empty($name)){
         $errors['name'] = 'Please enter your name';
     }
@@ -66,7 +66,7 @@ if (isset($_POST['contact'])) {
     }
 
     if(count($errors) === 0) {
-        // Lưu thông tin contact vào cơ sở dữ liệu
+
         $sql = "INSERT INTO contact (username, email, phone, message) VALUES ('$name', '$email', '$phone', '$message')";
         if (mysqli_query($conn, $sql)) {
             $success = true;

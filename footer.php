@@ -16,7 +16,7 @@
 
     <div class="box">
         <h3>extra links</h3>
-        <a href="#"><i class="fas fa-arrow-right"></i> my order</a>
+        <a href="order.php"><i class="fas fa-arrow-right"></i> my order</a>
         <a href="#"><i class="fas fa-arrow-right"></i> my favorite</a>
         <a href="#"><i class="fas fa-arrow-right"></i> my wishlist</a>
         <a href="#"><i class="fas fa-arrow-right"></i> my account</a>

@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
   $id = sanitize($_GET['id']);
   try {
       $conn->begin_transaction();
-      $sql = "DELETE FROM product WHERE collection_id = $id";
+      $sql = "DELETE FROM product WHERE id = $id";
       $conn->query($sql);
       $conn->commit();
   } catch (Exception $e) {

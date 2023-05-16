@@ -1,213 +1,131 @@
 <?php
-    session_start();
+require_once 'header_qladmin.php';
+?>
+
+
+<style>
+    h1{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .order-list {
+        width: 100%;
+        border: 1px solid;
+    border-radius: 10px;
+    }
+    .order-list th, .order-list td {
+        padding: 8px;
+        text-align: left;
+    }
+    .order-list th {
+        background-color: #f2f2f2;
+    }
+    .pagination {
+        margin-top: 20px;
+    }
+    .pagination a {
+        display: inline-block;
+        padding: 8px 16px;
+        text-decoration: none;
+        color: #000;
+        border: 1px solid #ddd;
+    }
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+</style>
+
+
+
+<?php
+
 require_once "connect.php";
 
 
-if (!isset($_SESSION['cart'])) {
-  $_SESSION['cart'] = array();
-}
-// Kiểm tra nếu người dùng đã ấn nút "Thêm vào giỏ hàng"
-if (isset($_POST['add_to_cart'])) {
-  // Lấy thông tin sản phẩm từ form
-  $product_id = $_POST['product_id'];
-  $quantity = $_POST['quantity'];
+$countSql = "SELECT COUNT(*) AS total FROM `order`";
+$countResult = $conn->query($countSql);
+$totalItems = $countResult->fetch_assoc()['total'];
 
-  // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-  if (isset($_SESSION['cart'][$product_id])) {
-      // Nếu đã có, cộng thêm số lượng
-      $_SESSION['cart'][$product_id] += $quantity;
-  } else {
-      // Nếu chưa có, thêm mới sản phẩm vào giỏ hàng
-      $_SESSION['cart'][$product_id] = $quantity;
-  }
 
-  // Chuyển hướng về trang cart.php để hiển thị giỏ hàng
+$itemsPerPage = 10;
 
- 
-}
-// Kiểm tra nếu người dùng đã ấn nút "Cập nhật giỏ hàng"
-if (isset($_POST['update_cart'])) {
-  foreach ($_POST['quantity'] as $product_id => $quantity) {
-      // Kiểm tra và cập nhật số lượng sản phẩm trong giỏ hàng
-      if ($quantity > 0) {
-          $_SESSION['cart'][$product_id] = $quantity;
-      } else {
-          unset($_SESSION['cart'][$product_id]);
+
+$totalPages = ceil($totalItems / $itemsPerPage);
+
+
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+$start = ($currentPage - 1) * $itemsPerPage;
+$sql = "SELECT user.username, user.phoneNumber, user.address, product.name, `order`.`quantity`, product.price, `order`.status FROM `order` INNER JOIN orderdetail on `order`.`id` = orderdetail.orderId INNER JOIN product ON orderdetail.productId= product.id INNER join user on `order`.`userId`= user.id
+        LIMIT $start, $itemsPerPage";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<h1>list orders</h1>";
+    echo "<table class='order-list'>";
+    echo "<tr>
+            <th>name</th>
+            <th>phone</th>
+            <th>address</th>
+            <th>name product</th>
+            <th>quantity</th>
+            <th>price</th>
+            <th>condition</th>
+          </tr>";
+
+
+    while ($row = $result->fetch_assoc()) {
+      echo "<tr>";
+      echo "<td>" . $row["username"] . "</td>";
+      echo "<td>" . $row["phoneNumber"] . "</td>";
+      echo "<td>" . $row["address"] . "</td>";
+      echo "<td>" . $row["name"] . "</td>";
+      echo "<td>" . $row["quantity"] . "</td>";
+      echo "<td>" . $row["price"] . "</td>";
+      echo "<td>" . $row["status"] . "</td>";
+      echo "</tr>";
       }
-  }
+      echo "</table>";
 
-  // Tính lại tổng số tiền sau khi cập nhật giỏ hàng
-  $total_price = 0;
-  foreach ($_SESSION['cart'] as $product_id => $quantity) {
-      $sql = "SELECT price FROM product WHERE id = $product_id";
-      $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_assoc($result);
-      $subtotal = $row['price'] * $quantity;
-      $total_price += $subtotal;
-  }
 
-  // Chuyển hướng về trang cart.php để hiển thị giỏ hàng sau khi cập nhật
-  header('Location: order.php');
-  exit();
+echo "<div class='pagination'>";
+$previousPage = $currentPage - 1;
+$nextPage = $currentPage + 1;
+
+if ($currentPage > 1) {
+    echo "<a href='?page=$previousPage'>&laquo; Previous</a>";
 }
 
-// Kiểm tra nếu người dùng đã ấn nút "Xóa sản phẩm"
-if (isset($_GET['remove'])) {
-  $product_id = $_GET['remove'];
-
-  // Xóa sản phẩm khỏi giỏ hàng
-  unset($_SESSION['cart'][$product_id]);
-
-  // Tính lại tổng số tiền sau khi xóa sản phẩm
-  $total_price = 0;
-  foreach ($_SESSION['cart'] as $product_id => $quantity) {
-      $sql = "SELECT price FROM product WHERE id = $product_id";
-      $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_assoc($result);
-      $subtotal = $row['price'] * $quantity;
-      $total_price += $subtotal;
-  }
-
-  // Chuyển hướng về trang cart.php để hiển thị giỏ hàng sau khi xóa
-  header('Location: order.php');
-  exit();
+for ($i = 1; $i <= $totalPages; $i++) {
+    if ($i == $currentPage) {
+        echo "<a class='active' href='?page=$i'>$i</a>";
+    } else {
+        echo "<a href='?page=$i'>$i</a>";
+    }
 }
 
-// Kiểm tra nếu người dùng đã ấn nút "Sửa sản phẩm"
-if (isset($_POST['update_product'])) {
-  $product_id = $_POST['update_product'];
-  $new_quantity = $_POST['quantity'][$product_id];
+if ($currentPage < $totalPages) {
+    echo "<a href='?page=$nextPage'>Next &raquo;</a>";
+}
 
-  // Kiểm tra và cập nhật số lượng sản phẩm trong giỏ hàng
-  if ($new_quantity > 0) {
-      $_SESSION['cart'][$product_id] = $new_quantity;
-  } else {
-      unset($_SESSION['cart'][$product_id]);
+echo "</div>";
+} else {
+  echo "no orders.";
   }
+  
 
-  // Tính lại tổng số tiền sau khi sửa sản phẩm
-  $total_price = 0;
-  foreach ($_SESSION['cart'] as $product_id => $quantity) {
-      $sql = "SELECT price FROM product WHERE id = $product_id";
-      $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_assoc($result);
-      $subtotal = $row['price'] * $quantity;
-      $total_price += $subtotal;
-    }
-
-      // Chuyển hướng về trang cart.php để hiển thị giỏ hàng sau khi sửa sản phẩm
-      header('Location: order.php');
-      exit();
-  }
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $total_price = 0;
-    foreach ($_SESSION['cart'] as $product_id => $quantity) {
-          $prd_id = $product_id;
-          $sql = "SELECT price FROM product WHERE id = $product_id";
-          $result = mysqli_query($conn, $sql);
-          $row = mysqli_fetch_assoc($result);
-          $subtotal = $row['price'] * $quantity;
-          $total_price += $subtotal;
-    }
-
-    // Kiểm tra nếu người dùng đã ấn nút "Xác thanh toán"
-    if (isset($_POST['checkout'])) {
-        $customer_id = $_SESSION['login'];
-        $order_date = date('Y-m-d H:i:s');
-        $status = 'Pending';
-        $sql = "INSERT INTO `order` (`userId`, `productId`, `totalPrice`, `quantity`, `status`) VALUES ('$customer_id', '$prd_id','$total_price','$quantity', '$status')";
-        mysqli_query($conn, $sql);
-
-        $order_id = mysqli_insert_id($conn);
-
-        foreach ($_SESSION['cart'] as $product_id => $quantity) {
-            $sql = "SELECT * FROM product WHERE id = $product_id";
-            $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $price = $row['price'];
-
-            $sql = "INSERT INTO orderdetail (orderId, productId, quantity, totalPrice) VALUES ('$order_id', '$product_id', '$quantity', '$total_price')";
-            mysqli_query($conn, $sql);
-
-        }
-
-        unset($_SESSION['cart']);
-        echo "thanh xoán thành công";
-        echo '<a href="../Login/home.php">tiếp tục mua hàng</a>';
-        exit();
-    }
-
-  }
-
-  // ... mã PHP tiếp theo
-
-  // Hiển thị danh sách sản phẩm trong giỏ hàng
-  echo '<form method="post" action="order.php">';
-  echo '<table>';
-  echo '<thead>';
-  echo '<tr>';
-  echo '<th>Product</th>';
-  echo '<th>Quantity</th>';
-  echo '<th>Price</th>';
-  echo '<th>Subtotal</th>';
-  echo '<th>Action</th>';
-  echo '</tr>';
-  echo '</thead>';
-  echo '<tbody>';
-
-  $total_price = 0;
-
-  foreach ($_SESSION['cart'] as $product_id => $quantity) {
-      $sql = "SELECT * FROM product WHERE id = $product_id";
-      $result = mysqli_query($conn, $sql);
-      $row = mysqli_fetch_assoc($result);
-      $subtotal = $row['price'] * $quantity;
-      $total_price += $subtotal;
-
-      echo '<tr>';
-      echo '<td>' . $row['name'] . '</td>';
-      echo '<td><input type="number" name="quantity[' . $product_id . ']" value="' . $quantity . '"></td>';
-      echo '<td>' . $row['price'] . '</td>';
-      echo '<td>' . $subtotal . '</td>';
-      echo '<td>';
-      echo '<button type="submit" name="update_product" value="' . $product_id . '">Sửa sản phẩm</button>';
-      echo '<td colspan="5"><input type="submit" name="checkout" value="Checkout"></td>';
-      echo '<a href="order.php?remove=' . $product_id . '">Xóa Sản Phẩm</a>';
-      echo '</td>';
-      echo '</tr>';
-  }
-
-  echo '</tbody>';
-  echo '<tfoot>';
-  echo '<tr>';
-  echo '<td colspan="3">Total:</td>';
-  echo '<td>' . $total_price . '</td>';
-  // echo '<td><input type="submit" name="update_cart" value="Update Cart"></td>';
-  echo '</tr>';
-  echo '</tfoot>';
-  echo '</table>';
-  echo '</form>';
+  $conn->close();
+  ?>
 
 
 
 
 
+<?php
+require_once 'footer_qladmin.php';
 ?>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <a href="../Login/home.php">Tiếp tục mua hàng</a>
-<form action=""  method="post">
-  <input type="submit" name="checkout" value="Mua Hàng">
-</form>
-    </form>
-  </body>
-  </html>
-
-

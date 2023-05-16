@@ -68,7 +68,7 @@ try{
       `quantity` INT,
       `status` INT,
       FOREIGN KEY (`productId`) REFERENCES `product`(`id`)
-    );";
+    )";
        
   
        $conn->query($sql);
@@ -95,8 +95,9 @@ try{
         `userId` int,
         `username` VARCHAR(100) NOT NULL,
         `email` VARCHAR(100) NOT NULL,
-        `message` TEXT NOT NULL,
-        FOREIGN KEY (`userId`) REFERENCES `user`(`id`)
+        phone varchar(100),
+        `message` TEXT NOT NULL
+ 
         
       )" ;
 

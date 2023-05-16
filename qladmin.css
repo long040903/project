@@ -276,12 +276,7 @@ body {
 }
 
 /* box-users */
-#content main .box-users{
-	display: none;
-}
-#content main .box-users.active{
-	display: block;
-}
+
 #content main .box-users .head-title .left{
 	width: 100%;
 }
@@ -342,13 +337,24 @@ body {
 
   /* box-products */
 
+  #content main .box-products .head-title .left .box-add{
+	display: flex;
+  }
+  #content main .box-products .head-title .left .box-add .add{
+	width: 73px;
+	height: 42px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+	background: #3c91e6;
+	margin-right: 40%;
+  }
+  #content main .box-products .head-title .left .box-add .add a{
+	color: white;
+  }
 
-  #content main .box-products{
-	display: none;
-}
-#content main .box-products.active{
-	display: block;
-}
 #content main .box-products .head-title .left{
 	width: 100%;
 }
@@ -452,13 +458,23 @@ body {
 
   /* box-categorys */
 
-
-  #content main .box-categorys {
-	display: none;
-}
-#content main .box-categorys.active{
-	display: block;
-}
+  #content main .box-categorys .head-title .left .box-add{
+	display: flex;
+  }
+  #content main .box-categorys .head-title .left .box-add .add{
+	width: 73px;
+	height: 42px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid lightgrey;
+	border-radius: 5px;
+	background: #3c91e6;
+	margin-right: 40%;
+  }
+  #content main .box-categorys .head-title .left .box-add .add a{
+	color: white;
+  }
   #content main .box-categorys .head-title .left{
 	width: 100%;
 }
@@ -502,3 +518,87 @@ body {
 	width: 30%;
 }
 
+
+
+/* box-message */
+
+
+
+#content main .box-message .head-title .left{
+	width: 100%;
+}
+#content main .box-message .head-title .left h1{
+	text-align: center;
+}
+#content main .box-message .head-title .left .box{
+	width: 100%;
+    border: var(--border);
+    border-radius: 10px;
+}
+#content main .box-message .head-title .left .box .table{
+	display: flex;
+    text-align: center;
+	padding-bottom: 10px;
+    padding-top: 10px;
+}
+#content main .box-message .head-title .left .box .table .name{
+	width: 20%;
+}
+#content main .box-message .head-title .left .box .table .email{
+	width: 50%;
+}
+#content main .box-message .head-title .left .box .table .phone{
+	width: 30%;
+}
+#content main .box-message .head-title .left .box .table .message{
+	width: 50%;
+}
+#content main .box-message .head-title .left .box .table-out{
+	display: flex;
+    text-align: center;
+	padding-bottom: 10px;
+    padding-top: 10px;
+}
+#content main .box-message .head-title .left .box .table-out .email-out{
+	width: 50%;
+}
+#content main .box-message .head-title .left .box .table-out .name-out{
+	width: 20%;
+}
+#content main .box-message .head-title .left .box .table-out .phone-out{
+	width: 20%;
+}
+#content main .box-message .head-title .left .box .table-out .message-out{
+	width: 50%;
+}
+#content main .box-message .head-title .left ul.pagination {
+	display: inline-block;
+	padding: 0;
+	margin: 20px 0;
+  }
+  
+  #content main .box-message .head-title .left  ul.pagination li {
+	display: inline;
+	margin: 0 5px;
+	font-size: 16px;
+  }
+  
+  #content main .box-message .head-title .left ul.pagination li a {
+	color: #000;
+	display: inline-block;
+	padding: 5px 10px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	text-decoration: none;
+  }
+  
+  #content main .box-message .head-title .left  ul.pagination li.active a {
+	background-color: #4CAF50;
+	color: #fff;
+	border-color: #4CAF50;
+  }
+  
+  #content main .box-message .head-title .left  ul.pagination li a:hover:not(.active) {
+	background-color: #ddd;
+	color: var(--dark);
+  }
