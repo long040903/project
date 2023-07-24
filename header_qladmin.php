@@ -1,5 +1,12 @@
 <?php
 require_once 'connect.php';
+session_start();
+if (!isset($_SESSION['loginAdmin'])) {
+  header('Location: ../Source/loginAdmin.php');
+
+}
+$user_id = $_SESSION['loginAdmin'];
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +15,7 @@ require_once 'connect.php';
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="qladmin.css">
+	<link rel="stylesheet" href="../Source/css/qladmin.css">
 
 	<title>AdminHub</title>
 </head>
@@ -62,7 +69,7 @@ require_once 'connect.php';
 				</a>
 			</li>
 			<li>
-				<a href="#" class="logout">
+				<a href="logoutAdmin.php" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Logout</span>
 				</a>

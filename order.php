@@ -61,7 +61,7 @@ $totalPages = ceil($totalItems / $itemsPerPage);
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
 
 $start = ($currentPage - 1) * $itemsPerPage;
-$sql = "SELECT user.username, user.phoneNumber, user.address, product.name, `order`.`quantity`, product.price, `order`.status FROM `order` INNER JOIN orderdetail on `order`.`id` = orderdetail.orderId INNER JOIN product ON orderdetail.productId= product.id INNER join user on `order`.`userId`= user.id
+$sql = "SELECT user.username, user.phoneNumber, user.address, product.name, orderdetail.quantity, product.price, `order`.status FROM `order` INNER JOIN orderdetail on `order`.`id` = orderdetail.orderId INNER JOIN product ON orderdetail.productId= product.id INNER join user on `order`.`userId`= user.id
         LIMIT $start, $itemsPerPage";
 $result = $conn->query($sql);
 

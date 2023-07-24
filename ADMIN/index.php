@@ -20,7 +20,7 @@ if (isset($_POST['addprd'])) {
         $errors['image'] = 'Image is required!';
     } else {
 
-        $allowed_extensions = array('jpg', 'jpeg', 'png');
+        $allowed_extensions = array('jpg', 'jpeg', 'png','webp');
         $image_extension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
 
         if (!in_array($image_extension, $allowed_extensions)) {

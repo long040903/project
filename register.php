@@ -20,7 +20,7 @@ require_once "connect.php";
         <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         
         
-        <link rel="stylesheet" href="register.css" />
+        <link rel="stylesheet" href="../Source/css/register.css" />
         <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
     </head>
     <body>

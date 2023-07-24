@@ -7,7 +7,7 @@ require_once 'header.php';
 require_once "connect.php";
 session_start();
 if (!isset($_SESSION['login'])) {
-  header('Location: ../Login/login2.php');
+  header('Location: ../Login/login.php');
 
 }
 
@@ -30,7 +30,7 @@ $images_folder = "ADMIN/uploads/";
 
                     <div class="form" >
                         <form method="get">
-                            <input type="text" name="search_query" placeholder="Tìm kiếm sản phẩm">
+                            <input type="text" name="search_query" placeholder="find products">
                             <button type="submit" ><i class="fas fa-search"></i></button>
                         </form>
                     </div>
@@ -69,7 +69,7 @@ $images_folder = "ADMIN/uploads/";
                                         echo '<div class="box">';
                                         echo "<a href='detail.php?id=" . $row["id"] . "'>";
                                         echo '<div class="image">';
-                                        echo "<img src='".$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']."/PROJECT_KI1/ADMIN/uploads/" . $row["img"] . "' alt='" . $row["name"] . "'/>";
+                                        echo "<img src='".$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']."/E_Project_Group_2_C2209G/SOURCE/ADMIN/uploads/" . $row["img"] . "' alt='" . $row["name"] . "'/>";
                                         echo '</div>';
                                         echo '<div class="content">';
                                         echo "<h3>" . $row["name"] . "</h3>";
@@ -166,7 +166,7 @@ $images_folder = "ADMIN/uploads/";
                         echo '<div class="form">';
                          echo '<form class="icons" method="POST" action="cart.php">';
                          echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
-                         echo '<a class="fas fa-eye" href="detail.php?id=' . $row["id"] . '"></a>';
+                         echo '<a class="fas fa-eye" href="detail.php?prd_id=' . $row["id"] . '"></a>';
                          echo '</form>';
                          echo' <form action="./Cart/cart.php" method="POST">';
                          echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";

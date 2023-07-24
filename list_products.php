@@ -8,7 +8,7 @@ require_once 'header_qladmin.php';
 					<div class="left">
                         <div class="box-add">
                             <div class="add">
-                                <a href="../Real_Pj/ADMIN/index.php">add</a>
+                                <a href="../Source/ADMIN/index.php">add</a>
                             </div>
                             <h1>list products</h1>
                         </div>
@@ -54,9 +54,10 @@ require_once 'header_qladmin.php';
 
 							while ($row = mysqli_fetch_assoc($result)) {
 								echo "<div class='tr'>";
-								echo "<div class='image'><img  src='ADMIN/uploads/" . $row['img'] . "' alt=''></div>";
 								echo "<div class='name-out' >" . $row['name'] . "</div>";
 								echo "<div class='price-out'>" . $row['price'] . "</div>";
+								echo "<div class='image'><img  src='ADMIN/uploads/" . $row['img'] . "' alt=''></div>";
+
 								echo "<div class='button'>";
 								echo "<a href='ADMIN/edit.php' style='background: #FFCE26;margin-right: 5px;border-radius: 5px;'>edit</a>";
 								echo "<a href='ADMIN/deleteprd.php' style='background: #ff0b00;border-radius: 5px;'>delete</a>";

@@ -11,7 +11,7 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.css" integrity="sha512-yqCpLPABHnpDe3/QgEm1OO4Ohq0BBlBtJGMh5JbhdYEb6nahIm7sbtjilfSFyzUhxdXHS/cm8+FYfNstfpxcrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="newpass.css">
+    <link rel="stylesheet" href="./css/newpass.css">
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
 </head>
 <body>

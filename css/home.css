@@ -33,7 +33,7 @@ section{
     padding-top: 12rem;
     padding-bottom: 8rem;
     text-align: center;
-    background: url(images/our-about.webp) no-repeat;
+    background: url(../images/our-about.webp) no-repeat;
     background-size: cover;
     background-position: center;
 }

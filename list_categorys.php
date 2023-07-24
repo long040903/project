@@ -1,5 +1,7 @@
 <?php
 require_once 'header_qladmin.php';
+
+
 ?>
 
 <div class="box-categorys">
@@ -7,7 +9,7 @@ require_once 'header_qladmin.php';
 					<div class="left">
                         <div class="box-add">
                             <div class="add">
-                                <a href="../Real_Pj/ADMIN/addcate.php">add</a>
+                                <a href="../Source/ADMIN/addcate.php">add</a>
                             </div>
                             <h1>list category</h1>
                         </div>

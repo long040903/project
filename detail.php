@@ -12,7 +12,7 @@ if (!isset($_SESSION['login'])) {
     exit();
 }
 
-$product_id = $_GET["id"];
+$product_id = $_GET["prd_id"];
 $user = $_SESSION['login'];
 
 // Product queries with corresponding IDs
@@ -91,7 +91,7 @@ mysqli_close($conn);
       
       <div class="add-to-cart-section">
         <div class="quantity-form">
-          <form action="../Real_Pj/Cart/cart.php" method="post">
+          <form action="../Source/Cart/cart.php" method="post">
           <label for="quantity" style="font-size:1.5rem;">quantity:</label>
           <input type="hidden" name="product_id" value="<?php echo  $row["id"] ?>" >
           <input type="text" name="quantity" id="quantity" value="1" min="1" class="quantity-input">

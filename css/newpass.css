@@ -19,7 +19,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: "Quicksand";
-     background: url(images/tao.webp) no-repeat; 
+     background: url(../images/tao.webp) no-repeat; 
     background-size: cover;
     background-position: center;
 }

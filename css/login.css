@@ -19,7 +19,7 @@ body {
     justify-content: center;
     height: 100vh;
     font-family: "Quicksand";
-        background: url(images/dua.webp) no-repeat;
+        background: url(../images/dua.webp) no-repeat;
     background-size: cover;
     background-position: center;
 }

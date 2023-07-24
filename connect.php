@@ -76,6 +76,7 @@ try{
 
     
     $sql="CREATE TABLE IF NOT EXISTS `orderDetail` (
+      `id` INT AUTO_INCREMENT PRIMARY KEY,
       `orderId` INT  AUTO_INCREMENT,
       `productId` INT,
       `quantity` INT,
@@ -92,13 +93,10 @@ try{
 
        $sql = "CREATE TABLE IF NOT EXISTS `contact` (
         `id` INT(11) NOT NULL AUTO_INCREMENT primary key,
-        `userId` int,
         `username` VARCHAR(100) NOT NULL,
         `email` VARCHAR(100) NOT NULL,
         phone varchar(100),
         `message` TEXT NOT NULL
- 
-        
       )" ;
 
       $conn->query($sql);

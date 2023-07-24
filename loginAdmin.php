@@ -9,7 +9,7 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.5/sweetalert2.css" integrity="sha512-yqCpLPABHnpDe3/QgEm1OO4Ohq0BBlBtJGMh5JbhdYEb6nahIm7sbtjilfSFyzUhxdXHS/cm8+FYfNstfpxcrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="loginAdmin.css" />
+    <link rel="stylesheet" href="../Source/css/loginAdmin.css" />
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@10'></script>
 </head>
 <body>

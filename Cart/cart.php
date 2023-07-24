@@ -98,26 +98,26 @@ if (!isset($_SESSION['cart'])) {
   $_SESSION['cart'] = array();
 }
 
-// Kiểm tra nếu người dùng đã ấn nút "Thêm vào giỏ hàng"
+
 if (isset($_POST['add_to_cart'])) {
-  // Lấy thông tin sản phẩm từ form
+
   $product_id = $_POST['product_id'];
   $quantity = $_POST['quantity'];
-  // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+
   if (isset($_SESSION['cart'][$product_id])) {
 
-    // Nếu đã có, cộng thêm số lượng
+    
     $_SESSION['cart'][$product_id] += $quantity;
   } else {
-    // Nếu chưa có, thêm mới sản phẩm vào giỏ hàng
+
     $_SESSION['cart'][$product_id] = $quantity;
   }
 }
 
-// Kiểm tra nếu người dùng đã ấn nút "Cập nhật giỏ hàng"
+
 if (isset($_POST['update_cart'])) {
   foreach ($_POST['quantity'] as $product_id => $quantity) {
-    // Kiểm tra và cập nhật số lượng sản phẩm trong giỏ hàng
+
     if ($quantity > 0) {
       $_SESSION['cart'][$product_id] = $quantity;
     } else {
@@ -126,20 +126,19 @@ if (isset($_POST['update_cart'])) {
   }
 }
 
-// Kiểm tra nếu người dùng đã ấn nút "Xóa sản phẩm"
+
 if (isset($_GET['remove'])) {
   $product_id = $_GET['remove'];
 
-  // Xóa sản phẩm khỏi giỏ hàng
   unset($_SESSION['cart'][$product_id]);
 }
 
-// Kiểm tra nếu người dùng đã ấn nút "Sửa sản phẩm"
+
 if (isset($_POST['update_product'])) {
   $product_id = $_POST['update_product'];
   $new_quantity = $_POST['quantity'][$product_id];
 
-  // Kiểm tra và cập nhật số lượng sản phẩm trong giỏ hàng
+
   if ($new_quantity > 0) {
     $_SESSION['cart'][$product_id] = $new_quantity;
   } else {
@@ -147,7 +146,7 @@ if (isset($_POST['update_product'])) {
   }
 }
 
-// Kiểm tra nếu người dùng đã ấn nút "Xác thanh toán"
+
 if (isset($_POST['checkout'])) {
   $total_price = 0;
   $order_details = array();
@@ -193,7 +192,7 @@ if (isset($_POST['checkout'])) {
   unset($_SESSION['cart']);
   echo "<script>
                         Swal.fire({
-                            title: 'thanh toán thành công!',
+                            title: 'Successful payment!',
                             icon: 'success',
                             showConfirmButton: false,
                             timer: 1500
@@ -204,7 +203,7 @@ if (isset($_POST['checkout'])) {
   exit();
 }
 ?>
-  <a href="../products.php">Tiếp tục mua hàng</a>
+  <a href="../products.php">Continue to buy</a>
   <form action="" method="post">
 
   </form>
@@ -240,7 +239,7 @@ if (isset($_POST['checkout'])) {
           echo '<td>' . $row['price'] . '</td>';
           echo '<td>' . $subtotal . '</td>';
           echo '<td>';
-          echo '<a href="order.php?remove=' . $product_id . '">Xóa</a>';
+          echo '<a href="cart.php?remove=' . $product_id . '">delete</a>';
   
           echo '</td>';
           echo '</tr>';

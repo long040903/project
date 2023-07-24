@@ -57,6 +57,6 @@
 
 <!-- footer section ends  -->
 
-<script src="home.js"></script>
+<script src="../Source/js/home.js"></script>
 </body>
 </html>
